@@ -13,7 +13,10 @@ export async function sendUrl(request: Request) {
       .insert([{ large_url: url, short_url: short_url }])
       .select()
 
-    // Hacer algo con los datos
+    return short_url
+
+    // Añadir verificación, si ya existe una large_url devolverle al usuario directamente la short_url, sin insertar nada nuevo en la base de datos
+    // cuando se inserta en la base de datos, tenemos que devolver la short_url
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message)
