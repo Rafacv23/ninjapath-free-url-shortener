@@ -1,0 +1,11 @@
+---
+import { sendUrl } from "../lib/sendUrl"
+if (Astro.request.method === "POST") {
+    sendUrl(Astro.request)
+}
+---
+
+<form method="POST">
+    <input type="text" placeholder="Url" name="url" required/>
+    <button type="submit">Enviar</button>
+</form>
