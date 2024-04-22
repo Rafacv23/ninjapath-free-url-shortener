@@ -1,10 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {getUrls} from "../lib/getUrls.ts"
+import SendUrlForm from '../components/SendUrlForm.astro';
+const urls = await getUrls()
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		Url shortener
+		<h1>Url shortener</h1>
+		<SendUrlForm/>
 	</main>
 </Layout>
 
