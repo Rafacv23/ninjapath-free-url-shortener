@@ -1,6 +1,6 @@
 import { supabase } from "./supabase"
 
-export async function getLargeUrl(short_url: string) {
+export async function getLargeUrl(short_url?: string) {
   let { data: urls, error } = await supabase
     .from("urls")
     .select("large_url")

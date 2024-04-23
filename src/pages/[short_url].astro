@@ -1,15 +1,19 @@
 ---
 import Redirect from "../components/Redirect";
 import Layout from "../layouts/Layout.astro";
-import { getLargeUrl } from "../lib/getLargeUrl";
-const {short_url} = Astro.params
-const large_url = await getLargeUrl(short_url)
+import { getLargeUrl } from "../lib/getLargeUrl"
+import { SITE_NAME } from "../utils/constants";
 
-//Esta pagina redirigira al usuario hacia la url real 
+const { short_url } = Astro.params;
+const large_url = await getLargeUrl(short_url);
 ---
 
-<Layout title={short_url}>
-    <main>
-        <Redirect url={large_url} client:only="react" />
-    </main>
+<Layout title={SITE_NAME}>
+  <main>
+    {large_url ? (
+      <Redirect url={large_url} client:only="react" />
+    ) : (
+      <p>Loading...</p> // Muestra un mensaje de carga mientras se obtiene la URL
+    )}
+  </main>
 </Layout>
