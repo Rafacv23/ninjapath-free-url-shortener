@@ -1,7 +1,8 @@
 import React from "react"
 import { copyUrlToClipboard } from "../../utils/copyUrlToClipboard"
+import type { convertedUrl } from "../../utils/definitions"
 
-export default function ConvertedUrl({ convertedUrl }: string) {
+export default function ConvertedUrl({ convertedUrl }: convertedUrl) {
   return (
     <div>
       <h4>{convertedUrl}</h4>
@@ -9,5 +10,3 @@ export default function ConvertedUrl({ convertedUrl }: string) {
     </div>
   )
 }
-
-// hay que añadir botón de copiar la url nueva
