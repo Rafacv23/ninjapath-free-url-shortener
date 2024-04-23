@@ -1,13 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import SendUrlForm from '../components/SendUrlForm.jsx';
+import SendUrlForm from '../../components/es/SendUrlForm.jsx';
+import EsLayout from '../../layouts/EsLayout.astro';
 ---
 
-<Layout title="Ninja Path | Free URL shortener">
+<EsLayout title="Ninja Path | Acortador de URLs gratuito">
 	<main>
 		<SendUrlForm client:only="react"/>
 	</main>
-</Layout>
+</EsLayout>
 
 <style>
 	main {
