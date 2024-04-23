@@ -6,6 +6,13 @@ export default function Redirect({ url }) {
       window.location.href = url
     }, [url])
   } else {
-    return <h1>No hay url</h1>
+    return (
+      <article>
+        <h1>URL not found</h1>
+        <a href="/" title="Go home">
+          Try with another one
+        </a>
+      </article>
+    )
   }
 }
