@@ -10,10 +10,6 @@ const large_url = await getLargeUrl(short_url);
 
 <Layout title={SITE_NAME}>
   <main>
-    {large_url ? (
       <Redirect url={large_url} client:only="react" />
-    ) : (
-      <p>Loading...</p> // Muestra un mensaje de carga mientras se obtiene la URL
-    )}
   </main>
 </Layout>
