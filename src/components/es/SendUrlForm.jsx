@@ -6,6 +6,7 @@ export default function SendUrlForm() {
   const [url, setUrl] = useState("")
   const [convertedUrl, setConvertedUrl] = useState(null)
   const [urlError, setUrlError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -15,12 +16,15 @@ export default function SendUrlForm() {
       return
     }
     try {
+      setLoading(true)
       const response = await sendUrl(url)
       setConvertedUrl(response)
       setUrlError("") // Limpiar el mensaje de error si la URL es válida
     } catch (error) {
       console.error("Error al enviar la URL:", error)
       // Aquí puedes manejar el error, por ejemplo, mostrar un mensaje de error al usuario.
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -51,8 +55,14 @@ export default function SendUrlForm() {
           required
         />
         <small>Acortar URLs</small>
-        <button type="submit">
-          {convertedUrl ? "Acortar otra URL" : "Acortar URL"}
+        <button type="submit" disabled={loading}>
+          {loading ? (
+            <span aria-busy="true">Generando tu enlace...</span>
+          ) : convertedUrl ? (
+            "Acortar otra URL"
+          ) : (
+            "Acortar URL"
+          )}
         </button>
       </form>
       {urlError && <p style={{ color: "red" }}>{urlError}</p>}
