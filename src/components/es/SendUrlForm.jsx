@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { sendUrl } from "../../lib/sendUrl"
 import ConvertedUrl from "./ConvertedUrl"
+import { isValidUrl } from "../../utils/isValidUrl"
 
 export default function SendUrlForm() {
   const [url, setUrl] = useState("")
@@ -30,16 +31,6 @@ export default function SendUrlForm() {
 
   const handleChange = (event) => {
     setUrl(event.target.value)
-  }
-
-  // Función de validación de URL simple
-  const isValidUrl = (url) => {
-    try {
-      new URL(url)
-      return true
-    } catch (error) {
-      return false
-    }
   }
 
   return (
