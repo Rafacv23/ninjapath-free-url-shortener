@@ -1,0 +1,40 @@
+---
+const {title, description, canonical, image} = Astro.props
+
+const canonicalURL = canonical
+	? new URL(canonical, Astro.site)
+	: new URL(Astro.url.pathname, Astro.site)
+
+const defaultImage = '' //Imagen por defecto de la web
+
+const img = image ? image : defaultImage
+---
+
+<title>{title}</title>
+<meta charset="UTF-8" />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="./favicon.avif" />
+<link rel='sitemap' href='/sitemap-index.xml'/>
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+  />	
+<meta name="generator" content={Astro.generator} />
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content={canonicalURL}>
+	<meta property="og:type" content="website">
+	<meta property="og:title" content={title}>
+	<meta property="og:description" content={description}>
+	<meta property="og:image" content={img}>
+	
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content="taberna-precursor.vercel.app">
+	<meta property="twitter:url" content={canonicalURL}>
+	<meta name="twitter:title" content={title}>
+	<meta name="twitter:description" content={description}>
+	<meta name="twitter:image" content={img}>
+
