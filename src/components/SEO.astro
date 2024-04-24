@@ -1,9 +1,10 @@
 ---
 const {title, description, canonical, image} = Astro.props
+import { SITE_URL } from "../utils/constants"
 
 const canonicalURL = canonical
 	? new URL(canonical, Astro.site)
-	: new URL(Astro.url.pathname, Astro.site)
+	: SITE_URL
 
 const defaultImage = '' //Imagen por defecto de la web
 
