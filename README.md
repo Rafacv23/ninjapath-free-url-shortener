@@ -5,6 +5,7 @@ Project made with Astro and Supabase to make your own short URLs totally free in
 [Live demo](https://ninjapath.vercel.app)
 
 ![ninjapath-preview](https://i.imgur.com/l8iFpP0.png)
+![ninjapath-performance](https://i.imgur.com/L3jhfgV.png)
 
 ```
 git clone https://github.com/Rafacv23/ninjapath-free-url-shortener
