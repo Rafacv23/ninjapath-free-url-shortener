@@ -3,7 +3,7 @@ import { sendUrl } from "../../lib/sendUrl"
 import { findExistingShortUrl } from "../../lib/findExistingShortUrl"
 import ConvertedUrl from "./ConvertedUrl"
 import { isValidUrl } from "../../utils/isValidUrl"
-
+import { handleChange, handleChangeAlias } from "../../utils/handleFunctions"
 export default function SendUrlForm() {
   const [url, setUrl] = useState("")
   const [alias, setAlias] = useState("")
@@ -44,15 +44,6 @@ export default function SendUrlForm() {
     }
   }
 
-  const handleChange = (event) => {
-    setUrl(event.target.value)
-  }
-
-  const handleChangeAlias = (event) => {
-    const value = event.target.value.replace(/\s/g, "")
-    setAlias(value)
-  }
-
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -62,7 +53,7 @@ export default function SendUrlForm() {
           name="url"
           id="url"
           value={url}
-          onChange={handleChange}
+          onChange={() => handleChange(event, setUrl)}
           required
         />
         <small>Acortar URLs</small>
@@ -74,7 +65,7 @@ export default function SendUrlForm() {
           name="alias"
           id="alias"
           value={alias}
-          onChange={handleChangeAlias}
+          onChange={() => handleChangeAlias(event, setAlias)}
         />
         <small>Personaliza tu enlace</small>
         <button type="submit" disabled={loading}>

@@ -3,6 +3,7 @@ import { sendUrl } from "../lib/sendUrl"
 import ConvertedUrl from "./ConvertedUrl"
 import { isValidUrl } from "../utils/isValidUrl"
 import { findExistingShortUrl } from "../lib/findExistingShortUrl"
+import { handleChange, handleChangeAlias } from "../utils/handleFunctions"
 
 export default function SendUrlForm() {
   const [url, setUrl] = useState("")
@@ -44,15 +45,6 @@ export default function SendUrlForm() {
     }
   }
 
-  const handleChange = (event) => {
-    setUrl(event.target.value)
-  }
-
-  const handleChangeAlias = (event) => {
-    const value = event.target.value.replace(/\s/g, "")
-    setAlias(value)
-  }
-
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -62,7 +54,7 @@ export default function SendUrlForm() {
           name="url"
           id="url"
           value={url}
-          onChange={handleChange}
+          onChange={() => handleChange(event, setUrl)}
           required
         />
         <small>Shorten a long URL</small>
@@ -74,7 +66,7 @@ export default function SendUrlForm() {
           name="alias"
           id="alias"
           value={alias}
-          onChange={handleChangeAlias}
+          onChange={() => handleChangeAlias(event, setAlias)}
         />
         <small>Customise your link</small>
         <button type="submit" disabled={loading}>
