@@ -1,9 +1,11 @@
 ---
 import SendUrlForm from '../../components/es/SendUrlForm.jsx';
 import EsLayout from '../../layouts/EsLayout.astro';
+import { SITE_ES_TITLE, SITE_ES_DESCRIPTION } from '../../utils/constants';
+
 ---
 
-<EsLayout title="Ninja Path | Acortador de URLs gratuito">
+<EsLayout title={SITE_ES_TITLE} description={SITE_ES_DESCRIPTION}>
 	<main>
 		<SendUrlForm client:only="react"/>
 	</main>

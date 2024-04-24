@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SendUrlForm from '../components/SendUrlForm.jsx';
+import { SITE_EN_TITLE, SITE_EN_DESCRIPTION, SITE_URL } from '../utils/constants';
 ---
 
-<Layout title="Ninja Path | Free URL shortener">
+<Layout title={SITE_EN_TITLE} description={SITE_EN_DESCRIPTION} canonical={SITE_URL}>
 	<main>
 		<SendUrlForm client:only="react"/>
 	</main>
