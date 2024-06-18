@@ -6,6 +6,8 @@ import {
   FacebookShareButton,
   LinkedinIcon,
   LinkedinShareButton,
+  TelegramIcon,
+  TelegramShareButton,
   TwitterIcon,
   TwitterShareButton,
   WhatsappIcon,
@@ -52,6 +54,13 @@ export default function ShareRRSS({ convertedUrl }: { convertedUrl: string }) {
             <WhatsappShareButton url={convertedUrl}>
               <WhatsappIcon size={32} round={true} /> Whatsapp
             </WhatsappShareButton>
+          </a>
+        </li>
+        <li>
+          <a>
+            <TelegramShareButton url={convertedUrl}>
+              <TelegramIcon size={32} round={true} /> Telegram
+            </TelegramShareButton>
           </a>
         </li>
       </ul>
