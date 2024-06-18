@@ -16,6 +16,13 @@ const img = image ? image : SITE_IMG
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/svg+xml" href="./favicon.avif" />
 <link rel='sitemap' href='/sitemap-index.xml'/>
+<meta name="author" content="Rafa Canosa" />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="en" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+
 <meta name="google-site-verification" content="8Ssu9wyMqGLnOHp01rAbY2QJAKTU4XkqTq9OPShpeOc" /><link
 rel="stylesheet"
 href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
@@ -31,7 +38,7 @@ href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
 	
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image">
-	<meta property="twitter:domain" content="taberna-precursor.vercel.app">
+	<meta property="twitter:domain" content={canonicalURL}>
 	<meta property="twitter:url" content={canonicalURL}>
 	<meta name="twitter:title" content={title}>
 	<meta name="twitter:description" content={description}>
