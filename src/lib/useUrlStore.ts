@@ -23,6 +23,6 @@ const persistState = persist<UrlsState>(
   }
 )
 
-const useUrlStore = create<UrlsState>(persistState)
+const useUrlStore = create<any>(persistState)
 
 export default useUrlStore
