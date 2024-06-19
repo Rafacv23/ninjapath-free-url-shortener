@@ -15,9 +15,6 @@ const UrlsTable: React.FC = () => {
     return (
       <div>
         <h2>No URLs created yet.</h2>
-        <a href="/" title="Start">
-          Try to make one
-        </a>
       </div>
     )
   }
