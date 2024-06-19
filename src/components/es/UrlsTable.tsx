@@ -5,7 +5,7 @@ import useUrlStore from "../../lib/useUrlStore"
 import type { Url } from "../../utils/definitions"
 
 const UrlsTable: React.FC = () => {
-  const urls = useUrlStore((state) => state.urls)
+  const urls = useUrlStore((state: any) => state.urls)
 
   const handleDelete = (originalUrl: string) => {
     useUrlStore.getState().removeUrl(originalUrl)
