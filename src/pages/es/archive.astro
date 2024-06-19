@@ -1,0 +1,30 @@
+---
+import { SITE_ES_DESCRIPTION, SITE_ES_TITLE } from "../../utils/constants";
+import { SITE_URL } from "../../utils/constants";
+import EsLayout from "../../layouts/EsLayout.astro";
+import UrlsTable from "../../components/es/UrlsTable";
+---
+
+<EsLayout title={SITE_ES_TITLE} description={SITE_ES_DESCRIPTION} canonical={SITE_URL}>
+	<main>
+        <UrlsTable client:only="react"/>
+		<a href="/es" title="Volver" class="contrast">Volver</a>
+	</main>
+</EsLayout>
+
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+</style>
