@@ -1,7 +1,10 @@
 <header>
-    <img src="./favicon.avif" alt="Ninja path logo" width="60" />
+    <img src="../favicon.avif" alt="Ninja path logo" width="60" />
     <h1>Ninja Path</h1>
-    <a href="/" title="Change to English version">English</a> 
+    <nav>
+        <a href="/" title="Switch to english version">English</a> 
+        <a href="/es/archive" title="URLs creadas">URLs creadas</a>
+    </nav>
 </header>
 
 <style>
@@ -11,6 +14,17 @@
         align-items: center;
         gap: 1rem;
         justify-content: center;
+    }
+    nav{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    @media (max-width: 480px) {
+        nav {
+            flex-direction: column;
+        }
     }
     h1{
         margin: 0;
