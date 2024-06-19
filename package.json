@@ -22,6 +22,7 @@
     "react-dom": "^18.2.0",
     "react-qr-code": "^2.0.14",
     "react-share": "^5.1.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "zustand": "^4.5.2"
   }
 }
