@@ -18,13 +18,13 @@ const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
         >
           <Copy />
         </button>
+        <ShareRRSS convertedUrl={convertedUrl} />
       </div>
       <div>
         <a href={convertedUrl} target="_blank" rel="noreferrer">
           <IconBoxArrowUpRight />
         </a>
         <ShareQR convertedUrl={convertedUrl} />
-        <ShareRRSS convertedUrl={convertedUrl} />
       </div>
     </div>
   )

@@ -1,5 +1,4 @@
 import { Share2 } from "lucide-react"
-import React from "react"
 import {
   EmailIcon,
   EmailShareButton,
@@ -17,11 +16,11 @@ import {
 
 export default function ShareRRSS({ convertedUrl }: { convertedUrl: string }) {
   return (
-    <details className="dropdown">
-      <summary role="button" className="contrast">
+    <details className="marker:text-transparent">
+      <summary className="cursor-pointer bg-violet-500 text-violet-50 shadow hover:bg-violet-800 h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0">
         <Share2 />
       </summary>
-      <ul>
+      <ul className="flex flex-col gap-2 mt-4">
         <li>
           <a>
             <EmailShareButton url={convertedUrl}>
