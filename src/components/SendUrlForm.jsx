@@ -47,9 +47,9 @@ export default function SendUrlForm() {
   }
 
   return (
-    <div>
+    <div className="grid gap-4 w-ful">
       <form onSubmit={handleSubmit} className="grid gap-4">
-        <span className="flex gap-1 items-center">
+        <span className="flex gap--1">
           <input
             type="url"
             placeholder="*Enter a long link here"
