@@ -47,7 +47,7 @@ export default function SendUrlForm() {
   }
 
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit} className="grid gap-4">
         <span className="flex gap-2 items-center">
           <input
@@ -100,8 +100,10 @@ export default function SendUrlForm() {
           )}
         </button>
       </form>
-      {urlError && <p style={{ color: "red" }}>{urlError}</p>}
-      {convertedUrl && <ConvertedUrl convertedUrl={convertedUrl} />}
-    </>
+      <div>
+        {urlError && <p style={{ color: "red" }}>{urlError}</p>}
+        {convertedUrl && <ConvertedUrl convertedUrl={convertedUrl} />}
+      </div>
+    </div>
   )
 }
