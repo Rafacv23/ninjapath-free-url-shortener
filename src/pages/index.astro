@@ -1,7 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import SendUrlForm from '../components/SendUrlForm.jsx';
-import { SITE_EN_TITLE, SITE_EN_DESCRIPTION, SITE_URL } from '../utils/constants';
+import Layout from '@/layouts/Layout.astro';
+import SendUrlForm from '@/components/SendUrlForm.jsx';
+import { SITE_EN_TITLE, SITE_EN_DESCRIPTION, SITE_URL } from '@/utils/constants';
 import Container from '@/components/Container.astro';
 ---
 
@@ -10,22 +10,3 @@ import Container from '@/components/Container.astro';
 		<SendUrlForm client:only="react"/>
 	</Container>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-</style>
