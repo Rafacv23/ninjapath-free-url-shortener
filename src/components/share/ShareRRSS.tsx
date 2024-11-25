@@ -1,3 +1,4 @@
+import { Share2 } from "lucide-react"
 import React from "react"
 import {
   EmailIcon,
@@ -18,7 +19,7 @@ export default function ShareRRSS({ convertedUrl }: { convertedUrl: string }) {
   return (
     <details className="dropdown">
       <summary role="button" className="contrast">
-        Share
+        <Share2 />
       </summary>
       <ul>
         <li>
