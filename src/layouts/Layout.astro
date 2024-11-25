@@ -19,24 +19,22 @@ const { title, description, canonical, image } = Astro.props;
 		<SEO title={title} description={description} canonical={canonical} image={image}/>
 	</head>
 	<body>
-		<div class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
-			<Header/>
-			<slot />
-			<Footer/>
+		<div class="absolute inset-0 -z-10 h-full w-full items-center py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
+			<div class="grid grid-cols-5 grid-rows-1 gap-4">
+				<div class="col-span-5 md:col-span-3 md:col-start-2 row">
+				  <Header />
+				</div>
+				<div class="col-span-5 md:col-span-3 row-span-3 md:col-start-2 row-start-2 mb-16 mx-auto">
+				  <slot/>
+				</div>
+				<div class="col-span-5 md:col-span-3 md:col-start-2">
+				  <Footer />
+				</div>
+			  </div>
 		</div>
 	</body>
-
 </html>
 <style is:global>
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
 	code {
 		font-family:
 			Menlo,
