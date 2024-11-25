@@ -19,15 +19,8 @@ const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
           <Copy />
         </button>
       </div>
-      <div className="btns">
-        <a
-          data-tooltip="Visit URL"
-          data-placement="bottom"
-          className="contrast"
-          href={convertedUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
+      <div>
+        <a href={convertedUrl} target="_blank" rel="noreferrer">
           <IconBoxArrowUpRight />
         </a>
         <ShareQR convertedUrl={convertedUrl} />
