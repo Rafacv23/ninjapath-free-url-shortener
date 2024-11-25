@@ -47,9 +47,9 @@ export default function SendUrlForm() {
   }
 
   return (
-    <div className="grid gap-4 w-ful">
+    <div className="p-4">
       <form onSubmit={handleSubmit} className="grid gap-4">
-        <span className="flex gap--1">
+        <span className="flex gap-1">
           <input
             type="url"
             placeholder="*Enter a long link here"
@@ -62,7 +62,7 @@ export default function SendUrlForm() {
           />
           <button
             onClick={() => setUrl("")}
-            className="bg-red-500 text-violet-50 shadow hover:bg-red-800 h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+            className="bg-red-500 text-violet-50 shadow hover:bg-red-800 h-9 px-3 py-1 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
           >
             <X />
           </button>
@@ -82,7 +82,7 @@ export default function SendUrlForm() {
           />
           <button
             onClick={() => setAlias("")}
-            className="bg-red-500 text-violet-50 shadow hover:bg-red-800 h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+            className="bg-red-500 text-violet-50 shadow hover:bg-red-800 h-9 px-3 py-1 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
           >
             <X />
           </button>
