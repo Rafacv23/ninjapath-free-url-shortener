@@ -1,7 +1,7 @@
 ---
-import SEO from '../components/SEO.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import SEO from '@/components/SEO.astro';
 
 interface Props {
 	title: string
@@ -18,24 +18,16 @@ const { title, description, canonical, image } = Astro.props;
 	<head>
 		<SEO title={title} description={description} canonical={canonical} image={image}/>
 	</head>
-	<body>
-		<Header/>
-		<slot />
-		<Footer/>
+	<body class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
+		<div class="max-w-xl place-content-center grid mx-auto">
+			<Header/>
+			<slot />
+			<Footer/>
+		</div>
 	</body>
+
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
 	html {
 		font-family: system-ui, sans-serif;
 		background: #13151a;
