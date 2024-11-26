@@ -5,6 +5,9 @@ import { isValidUrl } from "../utils/isValidUrl"
 import { findExistingShortUrl } from "../lib/findExistingShortUrl"
 import { handleChange, handleChangeAlias } from "../utils/handleFunctions"
 import { X } from "lucide-react"
+import { Input } from "./ui/input"
+import { Label } from "./ui/label"
+import { HoverBorderGradient } from "./ui/hover-border-gradient"
 
 export default function SendUrlForm() {
   const [url, setUrl] = useState("")
@@ -47,60 +50,60 @@ export default function SendUrlForm() {
   }
 
   return (
-    <div className="p-4">
+    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input">
       <form onSubmit={handleSubmit} className="grid gap-4">
-        <span className="flex gap-1">
-          <input
-            type="url"
-            placeholder="*Enter a long link here"
-            name="url"
+        <Label htmlFor="url">Shorten a long URL</Label>
+        <div className="flex gap-2 w-full justify-between">
+          <Input
             id="url"
+            placeholder="*Enter a long link here"
+            type="url"
+            name="url"
             value={url}
             onChange={() => handleChange(event, setUrl)}
             required
-            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           />
           <button
             onClick={() => setUrl("")}
-            className="bg-red-500 text-violet-50 shadow hover:bg-red-800 h-9 px-3 py-1 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+            className="px-3 py-1 rounded-md bg-red-500 text-white text-sm hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
           >
             <X />
           </button>
-        </span>
-        <small>Shorten a long URL</small>
-        <span className="flex gap-2 items-center">
-          <input
+        </div>
+        <Label htmlFor="alias">Customise your link</Label>
+        <div className="flex gap-2 w-full justify-between">
+          <Input
             type="text"
             min={2}
             max={20}
             placeholder="Enter alias"
-            name="alias"
             id="alias"
+            name="alias"
             value={alias}
             onChange={() => handleChangeAlias(event, setAlias)}
-            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           />
           <button
             onClick={() => setAlias("")}
-            className="bg-red-500 text-violet-50 shadow hover:bg-red-800 h-9 px-3 py-1 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+            className="px-3 py-1 rounded-md bg-red-500 text-white text-sm hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
           >
             <X />
           </button>
-        </span>
-        <small>Customise your link</small>
-        <button
+        </div>
+        <HoverBorderGradient
+          containerClassName="rounded-md"
+          as={"button"}
+          className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
           type="submit"
           disabled={loading}
-          className="bg-violet-500 text-violet-50 shadow hover:bg-violet-800 h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
         >
           {loading ? (
             <span aria-busy="true">Generating your link...</span>
           ) : (
             "Shorten URL"
           )}
-        </button>
+        </HoverBorderGradient>
       </form>
-      <div>
+      <div className="mt-4">
         {urlError && <p style={{ color: "red" }}>{urlError}</p>}
         {convertedUrl && <ConvertedUrl convertedUrl={convertedUrl} />}
       </div>
