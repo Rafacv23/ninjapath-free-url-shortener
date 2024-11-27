@@ -1,17 +1,23 @@
 ---
-import { Coffee, Heart } from 'lucide-astro';
+import { Coffee, Github, Heart } from 'lucide-astro';
+import {GITHUB_REPO, KOFI_URL, PORTFOLIO_URL} from "@/utils/constants"
 ---
 <footer>
-    <p class="flex flex-row items-center gap-2 text-white">Made with <Heart/> by 
-        <a href="https://www.rafacanosa.dev" title="Rafa Canosa" target="_blank" rel="noreferrer">Rafa Canosa</a>
-        <a href="https://ko-fi.com/rafacanosa" title="Buy me a coffee" target="_blank" rel="noreferrer"><Coffee /></a>
+    <p class="flex flex-row items-center gap-2">Made with <Heart/> by 
+        <a href={PORTFOLIO_URL} title="Rafa Canosa" target="_blank" rel="noreferrer" class="hover:underline decoration-primary">Rafa Canosa.</a>
     </p>
+        <div class="flex flex-row items-center gap-2">
+            <a href={KOFI_URL} title="Buy me a coffee" target="_blank" rel="noreferrer" class="flex items-center gap-2 hover:underline decoration-primary">Buy me a coffee<Coffee /></a>
+            <a href={GITHUB_REPO} target="_blank" rel="noreferrer" class="flex items-center gap-2 hover:underline decoration-primary">Star on Github <Github/></a>
+        </div>
 </footer>
 
 <style>
     footer{
-        display: grid;
+        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 2rem;
     }
 </style>
