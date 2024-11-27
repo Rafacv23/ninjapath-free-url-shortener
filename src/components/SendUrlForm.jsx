@@ -70,7 +70,8 @@ export default function SendUrlForm() {
               <Button
                 variant={"destructive"}
                 onClick={() => setUrl("")}
-                className="w-auto"
+                className={`w-auto ${url ? "" : "hidden"}`}
+                disabled={loading}
               >
                 <X />
               </Button>
@@ -90,7 +91,8 @@ export default function SendUrlForm() {
               <Button
                 variant={"destructive"}
                 onClick={() => setAlias("")}
-                className="w-auto"
+                className={`w-auto ${alias ? "" : "hidden"}`}
+                disabled={loading}
               >
                 <X />
               </Button>
