@@ -73,6 +73,7 @@ export default function SendUrlForm() {
                 onClick={() => setUrl("")}
                 className={`w-auto ${url ? "" : "hidden"}`}
                 disabled={loading}
+                type="button"
               >
                 <X />
               </Button>
@@ -95,6 +96,7 @@ export default function SendUrlForm() {
                 onClick={() => setAlias("")}
                 className={`w-auto ${alias ? "" : "hidden"}`}
                 disabled={loading}
+                type="button"
               >
                 <X />
               </Button>
