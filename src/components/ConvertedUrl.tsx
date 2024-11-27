@@ -1,8 +1,6 @@
 import { copyUrlToClipboard } from "@/utils/copyUrlToClipboard"
 import type { convertedUrl } from "@/utils/definitions"
 import "@/styles/ShareBtns.css"
-import ShareRRSS from "@/components/share/ShareRRSS"
-import ShareQR from "@/components/share/ShareQR"
 import { Copy, MoveUpRight, Share } from "lucide-react"
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
@@ -12,6 +10,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
+import ShareOptions from "@/components/ShareOptions"
 
 const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
   const buttons = [
@@ -26,13 +25,8 @@ const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
     },
     {
       icon: Share,
-      text: "Share via RRSS",
-      element: <ShareRRSS convertedUrl={convertedUrl} />,
-    },
-    {
-      icon: Share,
-      text: "Share via QR",
-      element: <ShareQR convertedUrl={convertedUrl} />,
+      text: "Share",
+      element: <ShareOptions convertedUrl={convertedUrl} />,
     },
   ]
 
