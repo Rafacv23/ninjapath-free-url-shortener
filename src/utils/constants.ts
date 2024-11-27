@@ -6,3 +6,8 @@ export const SITE_EN_DESCRIPTION: string = `${SITE_NAME} it's a free URL shorten
 export const SITE_ES_DESCRIPTION: string = `${SITE_NAME} Es un acortador de URLs gratuito. Te permite crear tus propias URLs en tan sólo un click.`
 export const SITE_IMG = "./ninjapath-img.avif"
 export const PUBLIC_SITE_IMG = "https://i.imgur.com/CTqiDSE.png"
+export const GITHUB_REPO =
+  "https://github.com/Rafacv23/ninjapath-free-url-shortener"
+
+export const KOFI_URL = "https://ko-fi.com/rafacanosa"
+export const PORTFOLIO_URL = "https://www.rafacanosa.dev"
