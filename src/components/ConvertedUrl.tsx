@@ -1,32 +1,59 @@
-import React from "react"
-import { copyUrlToClipboard } from "../utils/copyUrlToClipboard"
-import type { convertedUrl } from "../utils/definitions"
-import "../styles/ShareBtns.css"
-import { IconBoxArrowUpRight } from "../utils/icons"
-import ShareRRSS from "./share/ShareRRSS"
-import ShareQR from "./share/ShareQR"
-import { Copy } from "lucide-react"
-import { Card, CardDescription, CardTitle } from "./ui/card"
+import { copyUrlToClipboard } from "@/utils/copyUrlToClipboard"
+import type { convertedUrl } from "@/utils/definitions"
+import "@/styles/ShareBtns.css"
+import ShareRRSS from "@/components/share/ShareRRSS"
+import ShareQR from "@/components/share/ShareQR"
+import { Copy, MoveUpRight, Share } from "lucide-react"
+import { Card, CardTitle } from "@/components/ui/card"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
+  const buttons = [
+    {
+      icon: Copy,
+      text: "Copy",
+      element: (
+        <button onClick={() => copyUrlToClipboard(convertedUrl)}>
+          <Copy />
+        </button>
+      ),
+    },
+    {
+      icon: Share,
+      text: "Share via RRSS",
+      element: <ShareRRSS convertedUrl={convertedUrl} />,
+    },
+    {
+      icon: Share,
+      text: "Share via QR",
+      element: <ShareQR convertedUrl={convertedUrl} />,
+    },
+  ]
+
   return (
     <Card>
       <div className="flex flex-col gap-4">
-        <CardTitle className="text-xl font-semibold my-4">
-          {convertedUrl}
-        </CardTitle>
+        <a href={convertedUrl} target="_blank" rel="noreferrer">
+          <CardTitle>
+            {convertedUrl} <MoveUpRight />
+          </CardTitle>
+        </a>
         <div className="flex flex-row gap-4 items-center">
-          <button
-            className="bg-violet-500 text-violet-50 shadow hover:bg-violet-800 h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
-            onClick={() => copyUrlToClipboard(convertedUrl)}
-          >
-            <Copy />
-          </button>
-          <ShareRRSS convertedUrl={convertedUrl} />
-          <a href={convertedUrl} target="_blank" rel="noreferrer">
-            <IconBoxArrowUpRight />
-          </a>
-          <ShareQR convertedUrl={convertedUrl} />
+          {buttons.map((button) => (
+            <TooltipProvider key={button.text}>
+              <Tooltip>
+                <TooltipTrigger>{button.element}</TooltipTrigger>
+                <TooltipContent side="bottom">
+                  <p>{button.text}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          ))}
         </div>
       </div>
     </Card>
