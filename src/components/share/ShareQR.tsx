@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import QRCode from "react-qr-code"
-import { downloadQR } from "../../utils/downloadQr"
+import { downloadQR } from "@/utils/downloadQr"
 import { Download, QrCode } from "lucide-react"
 import {
   Modal,
@@ -8,7 +8,8 @@ import {
   ModalContent,
   ModalFooter,
   ModalTrigger,
-} from "../ui/animated-modal"
+} from "@/components/ui/animated-modal"
+import { Button } from "@/components/ui/button"
 
 export default function ShareQR({ convertedUrl }: { convertedUrl: string }) {
   const qrRef = useRef<HTMLDivElement | null>(null)
@@ -35,12 +36,9 @@ export default function ShareQR({ convertedUrl }: { convertedUrl: string }) {
           </div>
         </ModalContent>
         <ModalFooter>
-          <button
-            className="bg-violet-500 text-violet-50 shadow hover:bg-violet-800 h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
-            onClick={() => downloadQR({ convertedUrl, qrRef })}
-          >
+          <Button onClick={() => downloadQR({ convertedUrl, qrRef })}>
             <Download /> Download
-          </button>
+          </Button>
         </ModalFooter>
       </ModalBody>
     </Modal>
