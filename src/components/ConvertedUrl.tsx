@@ -4,7 +4,7 @@ import "@/styles/ShareBtns.css"
 import ShareRRSS from "@/components/share/ShareRRSS"
 import ShareQR from "@/components/share/ShareQR"
 import { Copy, MoveUpRight, Share } from "lucide-react"
-import { Card, CardTitle } from "@/components/ui/card"
+import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Tooltip,
   TooltipContent,
@@ -38,13 +38,20 @@ const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
 
   return (
     <Card>
-      <div className="flex flex-col gap-4">
-        <a href={convertedUrl} target="_blank" rel="noreferrer">
-          <CardTitle>
+      <CardHeader>
+        <CardTitle>
+          <a
+            href={convertedUrl}
+            className="flex items-center gap-2 hover:text-primary hover:transition-colors"
+            target="_blank"
+            rel="noreferrer"
+          >
             {convertedUrl} <MoveUpRight />
-          </CardTitle>
-        </a>
-        <div className="flex flex-row gap-4 items-center">
+          </a>
+        </CardTitle>
+      </CardHeader>
+      <CardFooter>
+        <ul>
           {buttons.map((button) => (
             <TooltipProvider key={button.text}>
               <Tooltip>
@@ -55,8 +62,8 @@ const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
               </Tooltip>
             </TooltipProvider>
           ))}
-        </div>
-      </div>
+        </ul>
+      </CardFooter>
     </Card>
   )
 }
