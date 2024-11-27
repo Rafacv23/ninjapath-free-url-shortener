@@ -11,6 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
 
 const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
   const buttons = [
@@ -18,9 +19,9 @@ const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
       icon: Copy,
       text: "Copy",
       element: (
-        <button onClick={() => copyUrlToClipboard(convertedUrl)}>
+        <Button onClick={() => copyUrlToClipboard(convertedUrl)}>
           <Copy />
-        </button>
+        </Button>
       ),
     },
     {
