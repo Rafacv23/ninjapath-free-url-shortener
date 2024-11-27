@@ -66,6 +66,7 @@ export default function SendUrlForm() {
                 value={url}
                 onChange={() => handleChange(event, setUrl)}
                 required
+                disabled={loading}
               />
               <Button
                 variant={"destructive"}
@@ -86,6 +87,7 @@ export default function SendUrlForm() {
                 id="alias"
                 name="alias"
                 value={alias}
+                disabled={loading || !url}
                 onChange={() => handleChangeAlias(event, setAlias)}
               />
               <Button
