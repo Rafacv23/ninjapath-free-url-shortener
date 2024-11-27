@@ -1,13 +1,15 @@
 import React, { useState } from "react"
-import { sendUrl } from "../lib/sendUrl"
-import ConvertedUrl from "./ConvertedUrl"
-import { isValidUrl } from "../utils/isValidUrl"
-import { findExistingShortUrl } from "../lib/findExistingShortUrl"
-import { handleChange, handleChangeAlias } from "../utils/handleFunctions"
+import { sendUrl } from "@/lib/sendUrl"
+import ConvertedUrl from "@/components/ConvertedUrl"
+import { isValidUrl } from "@/utils/isValidUrl"
+import { findExistingShortUrl } from "@/lib/findExistingShortUrl"
+import { handleChange, handleChangeAlias } from "@/utils/handleFunctions"
 import { X } from "lucide-react"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
-import { HoverBorderGradient } from "./ui/hover-border-gradient"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardTitle } from "@/components/ui/card"
 
 export default function SendUrlForm() {
   const [url, setUrl] = useState("")
@@ -50,61 +52,74 @@ export default function SendUrlForm() {
   }
 
   return (
-    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input">
-      <form onSubmit={handleSubmit} className="grid gap-4">
-        <Label htmlFor="url">Shorten a long URL</Label>
-        <div className="flex gap-2 w-full justify-between">
-          <Input
-            id="url"
-            placeholder="*Enter a long link here"
-            type="url"
-            name="url"
-            value={url}
-            onChange={() => handleChange(event, setUrl)}
-            required
-          />
-          <button
-            onClick={() => setUrl("")}
-            className="px-3 py-1 rounded-md bg-red-500 text-white text-sm hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
-          >
-            <X />
-          </button>
-        </div>
-        <Label htmlFor="alias">Customise your link</Label>
-        <div className="flex gap-2 w-full justify-between">
-          <Input
-            type="text"
-            min={2}
-            max={20}
-            placeholder="Enter alias"
-            id="alias"
-            name="alias"
-            value={alias}
-            onChange={() => handleChangeAlias(event, setAlias)}
-          />
-          <button
-            onClick={() => setAlias("")}
-            className="px-3 py-1 rounded-md bg-red-500 text-white text-sm hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
-          >
-            <X />
-          </button>
-        </div>
-        <HoverBorderGradient
-          containerClassName="rounded-md"
-          as={"button"}
-          className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
-          type="submit"
-          disabled={loading}
-        >
-          {loading ? (
-            <span aria-busy="true">Generating your link...</span>
-          ) : (
-            "Shorten URL"
-          )}
-        </HoverBorderGradient>
-      </form>
+    <div>
+      <Card>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="grid gap-4 pt-4">
+            <Label htmlFor="url">Shorten a long URL</Label>
+            <div className="grid gap-2 grid-cols-[1fr_auto] items-center">
+              <Input
+                id="url"
+                placeholder="*Enter a long link here"
+                type="url"
+                name="url"
+                value={url}
+                onChange={() => handleChange(event, setUrl)}
+                required
+              />
+              <Button
+                variant={"destructive"}
+                onClick={() => setUrl("")}
+                className="w-auto"
+              >
+                <X />
+              </Button>
+            </div>
+            <Label htmlFor="alias">Customise your link</Label>
+            <div className="grid gap-2 grid-cols-[1fr_auto] items-center">
+              <Input
+                type="text"
+                min={2}
+                max={20}
+                placeholder="Enter alias"
+                id="alias"
+                name="alias"
+                value={alias}
+                onChange={() => handleChangeAlias(event, setAlias)}
+              />
+              <Button
+                variant={"destructive"}
+                onClick={() => setAlias("")}
+                className="w-auto"
+              >
+                <X />
+              </Button>
+            </div>
+
+            <HoverBorderGradient
+              containerClassName="rounded-md w-full"
+              as={"button"}
+              className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 place-content-center"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <span aria-busy="true">Generating your link...</span>
+              ) : (
+                "Shorten URL"
+              )}
+            </HoverBorderGradient>
+          </form>
+        </CardContent>
+      </Card>
+
       <div className="mt-4">
-        {urlError && <p style={{ color: "red" }}>{urlError}</p>}
+        {urlError && (
+          <Card>
+            <CardTitle className="text-red-500 p-4">Error</CardTitle>
+            <CardContent>{urlError}</CardContent>
+          </Card>
+        )}
         {convertedUrl && <ConvertedUrl convertedUrl={convertedUrl} />}
       </div>
     </div>
