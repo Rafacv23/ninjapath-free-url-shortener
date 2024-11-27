@@ -18,7 +18,7 @@ import {
   ModalBody,
   ModalContent,
   ModalTrigger,
-} from "../ui/animated-modal"
+} from "@/components/ui/animated-modal"
 import { buttonVariants } from "../ui/button"
 
 export default function ShareRRSS({ convertedUrl }: { convertedUrl: string }) {
