@@ -102,6 +102,7 @@ export default function SendUrlForm() {
               className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 place-content-center"
               type="submit"
               disabled={loading}
+              primaryColor="#63e"
             >
               {loading ? (
                 <span aria-busy="true">Generating your link...</span>
