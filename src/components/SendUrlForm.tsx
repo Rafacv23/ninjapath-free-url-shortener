@@ -9,31 +9,42 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
+import { useToast } from "@/hooks/use-toast"
 
 export default function SendUrlForm() {
   const [url, setUrl] = useState("")
   const [alias, setAlias] = useState("")
-  const [convertedUrl, setConvertedUrl] = useState(null)
-  const [urlError, setUrlError] = useState("")
+  const [convertedUrl, setConvertedUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const { toast } = useToast()
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
+
     if (!isValidUrl(url)) {
-      // Validar la URL antes de enviarla
-      setUrlError("Please enter a valid URL.")
+      // Validate the URL before sending
+      toast({
+        title: "Error",
+        description: "Invalid URL provided.",
+        variant: "destructive",
+      })
       return
     }
 
     try {
       setLoading(true)
-      let response
+      let response: string | Response
+
       if (alias) {
         const validAlias = await findExistingShortUrl(alias)
         if (validAlias) {
-          setUrlError("This alias is already in use.")
           setLoading(false)
+          toast({
+            title: "Error",
+            description: "This alias is already in use. Try with another one.",
+            variant: "destructive",
+          })
           return
         } else {
           response = await sendUrl(url, alias)
@@ -41,11 +52,24 @@ export default function SendUrlForm() {
       } else {
         response = await sendUrl(url)
       }
-      setConvertedUrl(response)
-      setUrlError("") // Limpiar el mensaje de error si la URL es válida
+
+      // Ensure `response` is a string
+      if (response instanceof Response) {
+        if (!response.ok) {
+          throw new Error("Failed to shorten URL")
+        }
+        const data = await response.json()
+        setConvertedUrl(data.shortenedUrl) // Set the shortened URL
+      } else {
+        setConvertedUrl(response) // Directly use response if it's already a string
+      }
     } catch (error) {
-      console.error("Error al enviar la URL:", error)
-      // Manejar el error, mostrar un mensaje de error al usuario, etc.
+      console.error("Error sending the URL:", error)
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      })
     } finally {
       setLoading(false)
     }
@@ -64,7 +88,7 @@ export default function SendUrlForm() {
                 type="url"
                 name="url"
                 value={url}
-                onChange={() => handleChange(event, setUrl)}
+                onChange={(event) => handleChange(event, setUrl)}
                 required
                 disabled={loading}
               />
@@ -89,7 +113,7 @@ export default function SendUrlForm() {
                 name="alias"
                 value={alias}
                 disabled={loading || !url}
-                onChange={() => handleChangeAlias(event, setAlias)}
+                onChange={(event) => handleChangeAlias(event, setAlias)}
               />
               <Button
                 variant={"destructive"}
@@ -121,12 +145,6 @@ export default function SendUrlForm() {
       </Card>
 
       <div className="mt-4">
-        {urlError && (
-          <Card>
-            <CardTitle className="text-red-500 p-4">Error</CardTitle>
-            <CardContent>{urlError}</CardContent>
-          </Card>
-        )}
         {convertedUrl && <ConvertedUrl convertedUrl={convertedUrl} />}
       </div>
     </div>
