@@ -6,9 +6,9 @@ import { buttonVariants } from "@/components/ui/button";
 <header class="backdrop-blur-lg backdrop-opacity-60 bg-card flex flex-row justify-between space-x-4 items-center p-4 sticky top-0 z-40 w-full rounded-xl md:mt-4">
     <a href="/" title="Home" class="items-center flex flex-row gap-2">
             <img src="./favicon.avif" alt="Ninja path logo" width="40" />
-            <h1 class="text-violet-50 font-bold text-xl">Ninja Path</h1>
+            <h1 class="font-bold text-xl">Ninja Path</h1>
         </a>
-        <div class="text-violet-50">
+        <div>
             <a href={getRelativeLocaleUrl("es", "/")} class={buttonVariants({variant: "outline"})}>Español</a> 
             <a href={getRelativeLocaleUrl("en", "/archive")} class={buttonVariants({variant: "outline"})}>Created URLs</a>
         </div>
