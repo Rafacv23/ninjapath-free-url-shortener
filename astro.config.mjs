@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config"
 import vercel from "@astrojs/vercel/serverless"
 import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
-import { SITE_URL } from "./src/utils/constants"
+import { SITE_URL } from "@/src/utils/constants"
 
 import tailwind from "@astrojs/tailwind"
 

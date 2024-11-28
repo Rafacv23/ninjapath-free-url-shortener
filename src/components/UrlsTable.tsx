@@ -1,8 +1,8 @@
 // components/UrlsTable.tsx
 
 import React from "react"
-import useUrlStore from "../lib/useUrlStore"
-import type { Url } from "../utils/definitions"
+import useUrlStore from "@/lib/useUrlStore"
+import type { Url } from "@/utils/definitions"
 
 const UrlsTable: React.FC = () => {
   const urls = useUrlStore((state: any) => state.urls)

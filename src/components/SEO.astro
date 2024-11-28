@@ -1,6 +1,6 @@
 ---
 const {title, description, canonical, image} = Astro.props
-import { SITE_URL, PUBLIC_SITE_IMG } from "../utils/constants"
+import { SITE_URL, PUBLIC_SITE_IMG } from "@/utils/constants"
 
 const canonicalURL = canonical
 	? new URL(canonical, Astro.site)
