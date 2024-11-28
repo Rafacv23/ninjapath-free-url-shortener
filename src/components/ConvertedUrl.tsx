@@ -1,6 +1,5 @@
 import { copyUrlToClipboard } from "@/utils/copyUrlToClipboard"
 import type { convertedUrl } from "@/utils/definitions"
-import "@/styles/ShareBtns.css"
 import { Copy, MoveUpRight, Share } from "lucide-react"
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import {
