@@ -4,7 +4,17 @@ import { cn } from "@/utils/utils"
 
 type Direction = "TOP" | "LEFT" | "BOTTOM" | "RIGHT"
 
-export function HoverBorderGradient({
+// Generic type for `as` prop to infer correct HTML attributes
+type HoverBorderGradientProps<T extends React.ElementType> = {
+  as?: React.ElementType
+  containerClassName?: string
+  className?: string
+  duration?: number
+  clockwise?: boolean
+  primaryColor?: string
+} & React.ComponentPropsWithoutRef<T>
+
+export function HoverBorderGradient<T extends React.ElementType = "button">({
   children,
   containerClassName,
   className,
@@ -13,16 +23,7 @@ export function HoverBorderGradient({
   clockwise = true,
   primaryColor = "#FF5700", // Default primary color
   ...props
-}: React.PropsWithChildren<
-  {
-    as?: React.ElementType
-    containerClassName?: string
-    className?: string
-    duration?: number
-    clockwise?: boolean
-    primaryColor?: string
-  } & React.HTMLAttributes<HTMLElement>
->) {
+}: HoverBorderGradientProps<T>) {
   const [hovered, setHovered] = useState<boolean>(false)
   const [direction, setDirection] = useState<Direction>("TOP")
 
