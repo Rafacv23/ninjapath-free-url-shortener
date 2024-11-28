@@ -2,6 +2,7 @@
 import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header.astro';
 import SEO from '@/components/SEO.astro';
+import { Toaster } from '@/components/ui/toaster';
 
 interface Props {
 	title: string
@@ -27,6 +28,7 @@ const { title, description, canonical, image } = Astro.props;
 				<div class="col-span-5 md:col-span-3 row-span-3 md:col-start-2 row-start-2 mb-16 mx-auto max-w-xl w-full">
 				  <slot/>
 				</div>
+				<Toaster client:only="react"/>
 				<div class="col-span-5 md:col-span-3 md:col-start-2 max-w-xl mx-auto w-full">
 				  <Footer />
 				</div>
