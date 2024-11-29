@@ -2,7 +2,7 @@
 
 import { create } from "zustand"
 import { persist, createJSONStorage } from "zustand/middleware"
-import type { UrlsState, Url } from "../utils/definitions"
+import type { UrlsState, Url } from "@/utils/definitions"
 
 // Definimos el tipo explícito para 'state' en la función que pasamos a 'set'
 const persistState = persist<UrlsState>(

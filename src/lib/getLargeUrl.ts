@@ -1,4 +1,4 @@
-import { supabase } from "./supabase"
+import { supabase } from "@/lib/supabase"
 
 export async function getLargeUrl(short_url?: string) {
   let { data: urls, error } = await supabase

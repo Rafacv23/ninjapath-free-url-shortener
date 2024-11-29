@@ -1,4 +1,4 @@
-import { supabase } from "./supabase"
+import { supabase } from "@/lib/supabase"
 
 export async function getUrls() {
   let { data: urls, error } = await supabase.from("urls").select("id")
