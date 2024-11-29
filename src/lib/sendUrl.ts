@@ -1,18 +1,18 @@
 import { supabase } from "@/lib/supabase"
 import { getShortUrl } from "@/lib/getShortUrl.ts"
 import { generateShortUrl } from "@/actions/generateShortUrl.ts"
-import { findExistingLargeUrl } from "@/lib/findExistingLargeUrl.ts"
 import { SITE_URL } from "@/utils/constants.ts"
 import useUrlStore from "@/lib/useUrlStore.ts"
+import checkLargeUrl from "@/services/checkLargeUrl"
 
 export async function sendUrl(
   url: string,
   alias?: string
 ): Promise<string | Response> {
+  const date = new Date().toISOString()
+  const { addUrl } = useUrlStore.getState()
   try {
-    const urlExists = await findExistingLargeUrl(url)
-    const date = new Date().toISOString()
-    const { addUrl } = useUrlStore.getState()
+    const urlExists = await checkLargeUrl(url)
     if (urlExists) {
       console.log("La URL ya existe en la base de datos")
       const urls = await getShortUrl(url)
