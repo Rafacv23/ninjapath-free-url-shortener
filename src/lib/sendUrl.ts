@@ -1,9 +1,9 @@
-import { supabase } from "./supabase"
-import { getShortUrl } from "./getShortUrl.ts"
-import { generateShortUrl } from "../utils/generateShortUrl.ts"
-import { findExistingLargeUrl } from "./findExistingLargeUrl.ts"
-import { SITE_URL } from "../utils/constants.ts"
-import useUrlStore from "./useUrlStore.ts"
+import { supabase } from "@/lib/supabase"
+import { getShortUrl } from "@/lib/getShortUrl.ts"
+import { generateShortUrl } from "@/actions/generateShortUrl.ts"
+import { findExistingLargeUrl } from "@/lib/findExistingLargeUrl.ts"
+import { SITE_URL } from "@/utils/constants.ts"
+import useUrlStore from "@/lib/useUrlStore.ts"
 
 export async function sendUrl(
   url: string,

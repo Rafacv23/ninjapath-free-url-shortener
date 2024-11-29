@@ -1,4 +1,4 @@
-import { copyUrlToClipboard } from "@/utils/copyUrlToClipboard"
+import { copyUrlToClipboard } from "@/actions/copyUrlToClipboard"
 import type { convertedUrl } from "@/utils/definitions"
 import { Copy, MoveUpRight, Share } from "lucide-react"
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"

@@ -20,7 +20,7 @@ import {
   WhatsappShareButton,
 } from "react-share"
 import { Download, Share2 } from "lucide-react"
-import { downloadQR } from "@/utils/downloadQr"
+import { downloadQR } from "@/actions/downloadQr"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { useRef } from "react"
 import QRCode from "react-qr-code"
