@@ -1,7 +1,6 @@
 import React from "react"
 import { copyUrlToClipboard } from "../../utils/copyUrlToClipboard"
 import type { convertedUrl } from "../../utils/definitions"
-import "../../styles/ShareBtns.css"
 import ShareRRSS from "./share/ShareRRSS"
 import { IconBoxArrowUpRight } from "../../utils/icons"
 import ShareQR from "./share/ShareQR"
