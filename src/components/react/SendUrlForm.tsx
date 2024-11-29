@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { sendUrl } from "@/lib/sendUrl"
-import ConvertedUrl from "@/components/ConvertedUrl"
+import ConvertedUrl from "@/components/react/ConvertedUrl"
 import { isValidUrl } from "@/utils/isValidUrl"
 import { handleChange, handleChangeAlias } from "@/actions/handleFunctions"
 import { X } from "lucide-react"

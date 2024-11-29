@@ -9,7 +9,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Button } from "@/components/ui/button"
-import ShareOptions from "@/components/ShareOptions"
+import ShareOptions from "@/components/react/ShareOptions"
 
 const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
   const buttons = [
