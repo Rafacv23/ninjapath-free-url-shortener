@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { sendUrl } from "@/lib/sendUrl"
 import ConvertedUrl from "@/components/ConvertedUrl"
 import { isValidUrl } from "@/utils/isValidUrl"
-import { findExistingShortUrl } from "@/lib/findExistingShortUrl"
 import { handleChange, handleChangeAlias } from "@/utils/handleFunctions"
 import { X } from "lucide-react"
 import { Input } from "@/components/ui/input"
@@ -11,6 +10,7 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
+import checkAlias from "@/services/checkAlias"
 
 export default function SendUrlForm() {
   const [url, setUrl] = useState("")
@@ -37,8 +37,8 @@ export default function SendUrlForm() {
       let response: string | Response
 
       if (alias) {
-        const validAlias = await findExistingShortUrl(alias)
-        if (validAlias) {
+        const validAlias = await checkAlias(alias)
+        if (!validAlias) {
           setLoading(false)
           toast({
             title: "Error",
