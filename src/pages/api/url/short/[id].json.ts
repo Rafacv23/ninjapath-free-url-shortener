@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase"
 
 export const prerender = false
 
+// check if a short url exists in the database
 export const GET: APIRoute = async ({ params }) => {
   const id = params.id
 

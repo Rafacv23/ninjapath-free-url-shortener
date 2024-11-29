@@ -1,5 +1,4 @@
 // check if the shortUrl is already in the database (with alias or without)
-
 export default async function checkAlias(alias: string): Promise<boolean> {
   try {
     const response = await fetch(`/api/url/short/${alias}`, {
