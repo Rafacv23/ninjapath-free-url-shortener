@@ -1,10 +1,10 @@
 ---
 import Redirect from "@/components/react/Redirect";
 import Layout from "@/layouts/Layout.astro";
-import { getLargeUrl } from "@/lib/getLargeUrl"
+import fetchLargeUrl from "@/services/fetchLargeUrl";
 import { SITE_EN_TITLE, SITE_EN_DESCRIPTION } from '@/utils/constants';
 const { short_url } = Astro.params;
-const large_url = await getLargeUrl(short_url);
+const large_url = await fetchLargeUrl(short_url);
 ---
 
 <Layout title={SITE_EN_TITLE} description={SITE_EN_DESCRIPTION}>
