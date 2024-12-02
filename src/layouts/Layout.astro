@@ -22,14 +22,14 @@ const { title, description, canonical, image } = Astro.props;
 	<body class="dark">
 		<div class="absolute inset-0 -z-10 h-full w-full items-center py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
 			<div class="grid grid-cols-5 grid-rows-1 gap-4">
-				<div class="col-span-5 md:col-span-3 md:col-start-2 row max-w-xl mx-auto w-full">
+				<div class="col-span-6 lg:col-span-3 lg:col-start-2 row max-w-2xl mx-auto w-full">
 				  <Header />
 				</div>
-				<div class="col-span-5 md:col-span-3 row-span-3 md:col-start-2 row-start-2 mb-16 mx-auto max-w-xl w-full">
+				<div class="col-span-6 lg:col-span-3 row-span-3 lg:col-start-2 row-start-2 mb-16 mx-auto max-w-2xl w-full">
 				  <slot/>
 				</div>
 				<Toaster client:only="react"/>
-				<div class="col-span-5 md:col-span-3 md:col-start-2 max-w-xl mx-auto w-full">
+				<div class="col-span-6 lg:col-span-3 lg:col-start-2 max-w-2xl mx-auto w-full">
 				  <Footer />
 				</div>
 			  </div>
