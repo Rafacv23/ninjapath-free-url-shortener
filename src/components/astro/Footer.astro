@@ -3,22 +3,12 @@ import { Coffee, Github, Heart } from 'lucide-astro';
 import {GITHUB_REPO, KOFI_URL, PORTFOLIO_URL} from "@/utils/constants"
 import { buttonVariants } from '@/components/ui/button';
 ---
-<footer>
-    <p class="flex flex-row items-center gap-2">Made with <Heart/> by 
-        <a href={PORTFOLIO_URL} title="Rafa Canosa" target="_blank" rel="noreferrer" class={buttonVariants({variant: "ghost"})}>Rafa Canosa.</a>
+<footer class="flex flex-col justify-between items-center p-4 w-full">
+    <div class="flex flex-row items-center gap-2 mb-4">
+        <a href={KOFI_URL} title="Buy me a coffee" target="_blank" rel="noreferrer" class={buttonVariants({variant: "outline"})}><Coffee className="h-[1.2rem] w-[1.2rem]" /></a>
+        <a href={GITHUB_REPO} title="Github repo" target="_blank" rel="noreferrer" class={buttonVariants({variant: "outline"})}><Github className="h-[1.2rem] w-[1.2rem]"/></a>
+    </div>
+    <p class="flex flex-row items-center gap-2">Created by 
+        <a href={PORTFOLIO_URL} title="Rafa Canosa" target="_blank" rel="noreferrer" class={buttonVariants({variant: "ghost" })}>Rafa Canosa.</a>
     </p>
-        <div class="flex flex-row items-center">
-            <a href={KOFI_URL} title="Buy me a coffee" target="_blank" rel="noreferrer" class={buttonVariants({variant: "ghost"})}>Buy me a coffee<Coffee /></a>
-            <a href={GITHUB_REPO} title="Github repo" target="_blank" rel="noreferrer" class={buttonVariants({variant: "ghost"})}>Star on Github <Github/></a>
-        </div>
 </footer>
-
-<style>
-    footer{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-    }
-</style>
