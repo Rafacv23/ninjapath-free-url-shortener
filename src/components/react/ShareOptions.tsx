@@ -109,8 +109,9 @@ export default function ShareOptions({ convertedUrl }: ShareOptionsProps) {
 
   return (
     <Modal>
-      <ModalTrigger>
-        <Share2 />
+      <ModalTrigger className={buttonVariants({ variant: "outline" })}>
+        <Share2 className="h-[1.2rem] w-[1.2rem]" />{" "}
+        <span className="hidden sm:block">Share</span>
       </ModalTrigger>
       <ModalBody>
         <ModalContent className="flex flex-col gap-4 items-center">
