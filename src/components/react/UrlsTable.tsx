@@ -45,7 +45,7 @@ const UrlsTable: React.FC = () => {
             <TableCell>
               {format(new Date(url.date), "MM/dd/yyyy 'at' HH:mm")}
             </TableCell>
-            <TableCell>10</TableCell>
+            <TableCell>{url.clicks || "0"}</TableCell>
             <TableCell className="text-right">
               <Button variant="destructive">
                 <Trash2 className="h-[1.2rem] w-[1.2rem]" />

@@ -6,6 +6,7 @@ export interface Url {
   originalUrl: string
   convertedUrl: string
   date: string
+  clicks: number
 }
 
 export interface UrlsState {

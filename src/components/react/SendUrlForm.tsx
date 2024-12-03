@@ -50,7 +50,6 @@ export default function SendUrlForm() {
         if (!aliasExists) {
           response = await sendUrl(url, alias)
         } else {
-          console.log("hi")
           response = await sendUrl(url, alias)
         }
       } else {
