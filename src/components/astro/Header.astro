@@ -35,12 +35,14 @@ if (accessToken && refreshToken) {
                 <form action="/api/auth/signout">
                     <button type="submit" class={buttonVariants({variant: "destructive"})}>
                         <User className="h-[1.2rem] w-[1.2rem]"/>
-                        Logout
+                        <span class="hidden sm:block">
+                            Logout
+                        </span>
                     </button> 
                 </form>
                 : <a href={getRelativeLocaleUrl("en", "/signin")} class={buttonVariants({variant: "outline"})}>
                 <User className="h-[1.2rem] w-[1.2rem]"/>
-                Login
+                    Login
             </a>
             } 
         </div>
