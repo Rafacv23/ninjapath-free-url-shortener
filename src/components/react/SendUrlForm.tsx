@@ -22,49 +22,48 @@ export default function SendUrlForm() {
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
 
-    if (!isValidUrl(url)) {
-      // Validate the URL before sending
-      toast({
-        title: "Error",
-        description: "Invalid URL provided.",
-        variant: "destructive",
-      })
-      return
-    }
-
-    if (alias && (alias.length < 2 || alias.length > 20)) {
-      toast({
-        title: "Error",
-        description: "Alias must be between 2 and 20 characters.",
-        variant: "destructive",
-      })
-      return
-    }
+    !isValidUrl(url)
+      ? toast({
+          title: "Error",
+          description: "Invalid URL provided.",
+          variant: "destructive",
+        })
+      : null
 
     try {
       setLoading(true)
-      let response: string | Response
-
-      if (alias) {
-        const aliasExists = await checkAlias(alias)
-        if (!aliasExists) {
-          response = await sendUrl(url, alias)
+      if (!alias) {
+        const response = await sendUrl(url)
+        setConvertedUrl(response)
+        toast({
+          title: "Success",
+          description: "URL shortened successfully.",
+        })
+      } else {
+        if (alias && (alias.length < 2 || alias.length > 20)) {
+          toast({
+            title: "Error",
+            description: "Alias must be between 2 and 20 characters.",
+            variant: "destructive",
+          })
         } else {
-          response = await sendUrl(url, alias)
+          // check if the alias is already in use
+          const aliasExists = await checkAlias(alias)
+          if (aliasExists) {
+            const response = await sendUrl(url, alias)
+            setConvertedUrl(response)
+            toast({
+              title: "Success",
+              description: "URL shortened successfully.",
+            })
+          } else {
+            toast({
+              title: "Error",
+              description: "Alias already in use. Try with other one.",
+              variant: "destructive",
+            })
+          }
         }
-      } else {
-        response = await sendUrl(url)
-      }
-
-      // Ensure `response` is a string
-      if (response instanceof Response) {
-        if (!response.ok) {
-          throw new Error("Failed to shorten URL")
-        }
-        const data = await response.json()
-        setConvertedUrl(data.shortenedUrl) // Set the shortened URL
-      } else {
-        setConvertedUrl(response) // Directly use response if it's already a string
       }
     } catch (error) {
       console.error("Error sending the URL:", error)
