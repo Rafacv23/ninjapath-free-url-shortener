@@ -13,12 +13,25 @@ export async function sendUrl(
   const { addUrl } = useUrlStore.getState()
   try {
     const urlExists = await checkLargeUrl(url)
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser()
+
+    if (error) {
+      console.error(`Error fetching user data: ${error.message}`)
+    }
+
     if (urlExists) {
-      console.log("La URL ya existe en la base de datos")
       const urls = await getShortUrl(url)
       const short_url = urls?.[0]?.short_url
       const convertedUrl = `${SITE_URL}/${short_url}`
-      addUrl({ originalUrl: url, convertedUrl, date })
+      addUrl({
+        originalUrl: url,
+        convertedUrl,
+        date,
+        created_by: user?.email || null,
+      })
       return convertedUrl
     } else {
       const short_url = alias || generateShortUrl()
@@ -27,7 +40,12 @@ export async function sendUrl(
         .insert([{ large_url: url, short_url }])
         .select()
       const convertedUrl = `${SITE_URL}/${short_url}`
-      addUrl({ originalUrl: url, convertedUrl, date })
+      addUrl({
+        originalUrl: url,
+        convertedUrl,
+        date,
+        created_by: user?.email || null,
+      })
       return convertedUrl
     }
   } catch (error) {

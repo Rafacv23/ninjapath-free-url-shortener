@@ -32,21 +32,25 @@ export default function SendUrlForm() {
       return
     }
 
+    if (alias && (alias.length < 2 || alias.length > 20)) {
+      toast({
+        title: "Error",
+        description: "Alias must be between 2 and 20 characters.",
+        variant: "destructive",
+      })
+      return
+    }
+
     try {
       setLoading(true)
       let response: string | Response
 
       if (alias) {
-        const validAlias = await checkAlias(alias)
-        if (!validAlias) {
-          setLoading(false)
-          toast({
-            title: "Error",
-            description: "This alias is already in use. Try with another one.",
-            variant: "destructive",
-          })
-          return
+        const aliasExists = await checkAlias(alias)
+        if (!aliasExists) {
+          response = await sendUrl(url, alias)
         } else {
+          console.log("hi")
           response = await sendUrl(url, alias)
         }
       } else {
@@ -99,7 +103,7 @@ export default function SendUrlForm() {
                 disabled={loading}
                 type="button"
               >
-                <X />
+                <X className="h-[1.2rem] w-[1.2rem]" />
               </Button>
             </div>
             <Label htmlFor="alias">Customise your link</Label>
@@ -122,7 +126,7 @@ export default function SendUrlForm() {
                 disabled={loading}
                 type="button"
               >
-                <X />
+                <X className="h-[1.2rem] w-[1.2rem]" />
               </Button>
             </div>
 

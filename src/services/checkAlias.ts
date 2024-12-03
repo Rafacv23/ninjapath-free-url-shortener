@@ -8,14 +8,13 @@ export default async function checkAlias(alias: string): Promise<boolean> {
       },
     })
 
-    //if response fails the alias doesnt exists
-    if (response.status === 404 || response.status === 406) {
-      return false
-    }
-
     // if response is ok, alias exists
     if (response.ok) {
       return true
+    }
+    //if response fails the alias doesnt exists
+    if (response.status === 404 || response.status === 406) {
+      return false
     }
 
     // Other http errors

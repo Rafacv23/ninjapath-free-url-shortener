@@ -11,6 +11,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
+import { format } from "date-fns"
+import { Trash2 } from "lucide-react"
 
 const UrlsTable: React.FC = () => {
   const urls = useUrlStore((state: any) => state.urls)
@@ -28,11 +30,11 @@ const UrlsTable: React.FC = () => {
       <TableCaption>URLs</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead>Original URL</TableHead>
+          <TableHead className="w-[100px]">Original URL</TableHead>
           <TableHead>Converted URL</TableHead>
-          <TableHead>Created at</TableHead>
-          <TableHead>Clicks</TableHead>
-          <TableHead>Action</TableHead>
+          <TableHead className="w-[100px]">Created</TableHead>
+          <TableHead className="w-[100px]">Clicks</TableHead>
+          <TableHead className="text-right">Delete</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -40,10 +42,14 @@ const UrlsTable: React.FC = () => {
           <TableRow key={url.originalUrl}>
             <TableCell>{url.originalUrl}</TableCell>
             <TableCell>{url.convertedUrl}</TableCell>
-            <TableCell>{url.date}</TableCell>
-            <TableCell>Number of clicks</TableCell>
+            <TableCell>
+              {format(new Date(url.date), "MM/dd/yyyy 'at' HH:mm")}
+            </TableCell>
+            <TableCell>10</TableCell>
             <TableCell className="text-right">
-              <Button variant="destructive">Remove</Button>
+              <Button variant="destructive">
+                <Trash2 className="h-[1.2rem] w-[1.2rem]" />
+              </Button>
             </TableCell>
           </TableRow>
         ))}

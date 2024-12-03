@@ -1,3 +1,5 @@
+import { supabase } from "@/lib/supabase"
+
 // check if the shortUrl is already in the database (with alias or without)
 export default async function fetchLargeUrl(
   url: string | undefined
@@ -20,6 +22,19 @@ export default async function fetchLargeUrl(
     }
 
     const data = await response.json()
+
+    //add +1 click to the url in the database
+    const { error: updateError } = await supabase
+      .from("urls")
+      .update({
+        clicks: supabase.rpc("increment", { column_name: "clicks", amount: 1 }),
+      })
+      .eq("short_url", url)
+
+    if (updateError) {
+      console.error("Error updating clicks:", updateError.message)
+    }
+
     return data.data.large_url
   } catch (error) {
     console.error("Error checking shortUrl:", error)

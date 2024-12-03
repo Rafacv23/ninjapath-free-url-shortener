@@ -12,7 +12,7 @@ export default async function checkLargeUrl(
       .single()
 
     // if url doesnt exists return false
-    if (!url) {
+    if (!url.data) {
       return false
     }
 
