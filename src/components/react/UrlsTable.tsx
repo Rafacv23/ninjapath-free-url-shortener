@@ -1,15 +1,19 @@
-// components/UrlsTable.tsx
-
 import React from "react"
 import useUrlStore from "@/lib/useUrlStore"
 import type { Url } from "@/utils/definitions"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { Button } from "@/components/ui/button"
 
 const UrlsTable: React.FC = () => {
   const urls = useUrlStore((state: any) => state.urls)
-
-  const handleDelete = (originalUrl: string) => {
-    useUrlStore.getState().removeUrl(originalUrl)
-  }
 
   if (urls.length === 0) {
     return (
@@ -20,49 +24,31 @@ const UrlsTable: React.FC = () => {
   }
 
   return (
-    <table className="striped">
-      <thead data-theme="light">
-        <tr>
-          <th scope="col">Original URL</th>
-          <th scope="col">Converted URL</th>
-          <th scope="col">Date</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
+    <Table>
+      <TableCaption>URLs</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Original URL</TableHead>
+          <TableHead>Converted URL</TableHead>
+          <TableHead>Created at</TableHead>
+          <TableHead>Clicks</TableHead>
+          <TableHead>Action</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {urls.map((url: Url) => (
-          <tr key={url.originalUrl}>
-            <td>
-              <a
-                href={url.originalUrl}
-                title={url.originalUrl}
-                className="secondary"
-              >
-                {url.originalUrl}
-              </a>
-            </td>
-            <td>
-              <a
-                href={url.convertedUrl}
-                title={url.convertedUrl}
-                className="secondary"
-              >
-                {url.convertedUrl}
-              </a>
-            </td>
-            <td>{url.date}</td>
-            <td>
-              <button
-                className="outline contrast"
-                onClick={() => handleDelete(url.originalUrl)}
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
+          <TableRow key={url.originalUrl}>
+            <TableCell>{url.originalUrl}</TableCell>
+            <TableCell>{url.convertedUrl}</TableCell>
+            <TableCell>{url.date}</TableCell>
+            <TableCell>Number of clicks</TableCell>
+            <TableCell className="text-right">
+              <Button variant="destructive">Remove</Button>
+            </TableCell>
+          </TableRow>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   )
 }
 
