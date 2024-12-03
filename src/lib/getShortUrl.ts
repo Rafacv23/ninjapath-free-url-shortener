@@ -9,6 +9,5 @@ export async function getShortUrl(large_url: string) {
   if (error) {
     console.log(error)
   }
-  console.log(url)
   return url
 }
