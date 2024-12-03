@@ -5,10 +5,7 @@ import { SITE_URL } from "@/utils/constants.ts"
 import useUrlStore from "@/lib/useUrlStore.ts"
 import checkLargeUrl from "@/services/checkLargeUrl"
 
-export async function sendUrl(
-  url: string,
-  alias?: string
-): Promise<string | Response> {
+export async function sendUrl(url: string, alias?: string): Promise<string> {
   const date = new Date().toISOString()
   const { addUrl } = useUrlStore.getState()
   try {
@@ -52,6 +49,6 @@ export async function sendUrl(
     if (error instanceof Error) {
       console.error(error.message)
     }
-    return new Response("Error al procesar la solicitud", { status: 500 })
+    throw new Error("An error occurred while processing the request")
   }
 }
