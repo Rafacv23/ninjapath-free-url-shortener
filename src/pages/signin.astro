@@ -1,0 +1,39 @@
+---
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Layout from "@/layouts/Layout.astro";
+import { SITE_EN_DESCRIPTION, SITE_URL } from "@/utils/constants";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (accessToken && refreshToken) {
+  return redirect("/");
+}
+---
+
+<Layout title="Register" description={SITE_EN_DESCRIPTION} canonical={SITE_URL}>
+  <Card>
+    <CardHeader>
+    <CardTitle>
+      <h1>Sign in</h1>
+    </CardTitle>
+    <CardDescription>
+      <p>You don't have an account? <a href="/register">Register</a></p>
+    </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <form action="/api/auth/signin" method="post" class="grid gap-4">
+        <Label htmlFor="email">Email</Label>
+        <Input type="email" name="email" id="email" />
+        <Label htmlFor="password">Password</Label>
+        <Input type="password" name="password" id="password" />
+        <Button type="submit">Sign in</Button>
+      </form>
+    </CardContent>
+  </Card>
+</Layout>
