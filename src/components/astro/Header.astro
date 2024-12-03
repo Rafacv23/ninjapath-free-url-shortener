@@ -3,7 +3,13 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { buttonVariants } from "@/components/ui/button";
 import { Globe, History, User } from "lucide-astro";
 
-const logged = true
+const accessToken = Astro.cookies.get("sb-access-token");
+const refreshToken = Astro.cookies.get("sb-refresh-token");
+let logged = false;
+
+if (accessToken && refreshToken) {
+	logged = true;
+}
 
 ---
 
@@ -25,12 +31,17 @@ const logged = true
                     <span class="hidden sm:block">
                         Created URLs
                     </span>
-                </a> 
-                : null
-            } 
-            <a href={getRelativeLocaleUrl("en", "/archive")} class={buttonVariants({variant: "outline"})}>
+                </a>
+                <form action="/api/auth/signout">
+                    <button type="submit" class={buttonVariants({variant: "destructive"})}>
+                        <User className="h-[1.2rem] w-[1.2rem]"/>
+                        Logout
+                    </button> 
+                </form>
+                : <a href={getRelativeLocaleUrl("en", "/signin")} class={buttonVariants({variant: "outline"})}>
                 <User className="h-[1.2rem] w-[1.2rem]"/>
                 Login
             </a>
+            } 
         </div>
 </header>
