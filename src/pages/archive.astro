@@ -12,25 +12,8 @@ if (!accessToken || !refreshToken) {
 ---
 
 <Layout title={SITE_EN_TITLE} description={SITE_EN_DESCRIPTION} canonical={SITE_URL}>
-	<main>
+	<div>
         <UrlsTable client:only="react"/>
 		<a href="/" title="Go back" class="contrast">Go back</a>
-	</main>
+	</div>
 </Layout>
-
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-</style>
