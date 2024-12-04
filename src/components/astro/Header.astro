@@ -11,12 +11,6 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/astro/comp
             <h1 class="font-bold text-base sm:text-xl">Ninja Path</h1>
         </a>
         <div class="flex flex-row gap-2">
-            <a href={getRelativeLocaleUrl("es", "/")} class={buttonVariants({variant: "outline"})}>
-                <Globe className="h-[1.2rem] w-[1.2rem]" />
-                <span class="hidden sm:block">
-                    Español
-                </span>
-            </a>
             <SignedOut>
                 <SignInButton mode="modal" class={buttonVariants({variant: "outline"})}>
                     <User className="h-[1.2rem] w-[1.2rem]"/>
