@@ -18,7 +18,6 @@ export default function SendUrlForm({ email }: { email?: string }) {
   const [convertedUrl, setConvertedUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const { toast } = useToast()
-
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
 

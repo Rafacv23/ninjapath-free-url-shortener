@@ -51,7 +51,7 @@ const ConvertedUrl = ({ convertedUrl }: convertedUrl) => {
           {buttons.map((button) => (
             <TooltipProvider key={button.text}>
               <Tooltip>
-                <TooltipTrigger>{button.element}</TooltipTrigger>
+                <TooltipTrigger asChild>{button.element}</TooltipTrigger>
                 <TooltipContent side="bottom">
                   <p>{button.text}</p>
                 </TooltipContent>

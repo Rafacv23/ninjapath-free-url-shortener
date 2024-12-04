@@ -23,16 +23,16 @@ export default async function fetchLargeUrl(
 
     const data = await response.json()
 
-    //add +1 click to the url in the database
+    const updatedClicks = (data.data.clicks || 0) + 1
+
     const { error: updateError } = await supabase
       .from("urls")
-      .update({
-        clicks: supabase.rpc("increment", { column_name: "clicks", amount: 1 }),
-      })
+      .update({ clicks: updatedClicks })
       .eq("short_url", url)
 
     if (updateError) {
       console.error("Error updating clicks:", updateError.message)
+      throw new Error("Failed to update clicks")
     }
 
     return data.data.large_url

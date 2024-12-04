@@ -2,7 +2,6 @@ import { supabase } from "@/lib/supabase"
 import { getShortUrl } from "@/lib/getShortUrl.ts"
 import { generateShortUrl } from "@/actions/generateShortUrl.ts"
 import { SITE_URL } from "@/utils/constants.ts"
-import useUrlStore from "@/lib/useUrlStore.ts"
 import checkLargeUrl from "@/services/checkLargeUrl"
 
 export async function sendUrl(
@@ -10,8 +9,6 @@ export async function sendUrl(
   alias?: string,
   email?: string
 ): Promise<string> {
-  const date = new Date().toISOString()
-  const { addUrl } = useUrlStore.getState()
   try {
     const urlExists = await checkLargeUrl(url)
 
@@ -19,26 +16,14 @@ export async function sendUrl(
       const urls = await getShortUrl(url)
       const short_url = urls?.[0]?.short_url
       const convertedUrl = `${SITE_URL}/${short_url}`
-      addUrl({
-        originalUrl: url,
-        convertedUrl,
-        date,
-        created_by: email,
-      })
       return convertedUrl
     } else {
       const short_url = alias || generateShortUrl()
       await supabase
         .from("urls")
-        .insert([{ large_url: url, short_url }])
+        .insert([{ large_url: url, short_url, created_by: email }])
         .select()
       const convertedUrl = `${SITE_URL}/${short_url}`
-      addUrl({
-        originalUrl: url,
-        convertedUrl,
-        date,
-        created_by: email,
-      })
       return convertedUrl
     }
   } catch (error) {
