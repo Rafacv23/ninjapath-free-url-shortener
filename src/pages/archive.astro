@@ -15,8 +15,8 @@ const { data: userUrls, error } = await supabase
 ---
 
 <Layout title={SITE_EN_TITLE} description={SITE_EN_DESCRIPTION} canonical={SITE_URL}>
-	<div>
-        <UrlsTable client:only="react" data={userUrls || []}/>
-		<a href="/" title="Go back" class={buttonVariants({variant: "outline"})}>Go back</a>
+	<div class="grid">
+      <UrlsTable client:only="react" data={userUrls || []}/>
+		  <a href="/" title="Go back" class={buttonVariants({variant: "outline"})}>Go back</a>
 	</div>
 </Layout>
