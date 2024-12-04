@@ -12,6 +12,12 @@ import {
 import { Button } from "@/components/ui/button"
 import { format } from "date-fns"
 import { Trash2 } from "lucide-react"
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 interface UrlsTableProps {
   data: Url[] // Expecting an array of Url objects as props
@@ -20,9 +26,12 @@ interface UrlsTableProps {
 const UrlsTable: React.FC<UrlsTableProps> = ({ data }) => {
   if (!data || data.length === 0) {
     return (
-      <div>
-        <h2>No URLs created yet.</h2>
-      </div>
+      <Card className="mb-4">
+        <CardHeader>
+          <CardTitle>Urls</CardTitle>
+          <CardDescription>No URLs created yet.</CardDescription>
+        </CardHeader>
+      </Card>
     )
   }
 
