@@ -6,7 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { SITE_EN_TITLE, SITE_EN_DESCRIPTION, SITE_URL } from "@/utils/constants";
 
 const data = await Astro.locals.currentUser()
-const email = data.emailAddresses.map((email: { emailAddress: string; }) => email.emailAddress)[0]
+const email = data?.emailAddresses.map((email: { emailAddress: string; }) => email.emailAddress)[0]
 
 const { data: userUrls, error } = await supabase
   .from("urls")

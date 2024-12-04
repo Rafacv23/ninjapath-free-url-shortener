@@ -7,7 +7,7 @@ let email
 
 if(Astro.locals.auth().userId){
 	const user = await Astro.locals.currentUser()
-	email = user.emailAddresses.map((email: { emailAddress: string; }) => email.emailAddress)[0]
+	email = user?.emailAddresses.map((email: { emailAddress: string; }) => email.emailAddress)[0]
 }
 ---
 

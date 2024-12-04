@@ -12,7 +12,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import checkAlias from "@/services/checkAlias"
 
-export default function SendUrlForm({ email }: { email?: string }) {
+export default function SendUrlForm({ email }: { email?: string | undefined }) {
   const [url, setUrl] = useState("")
   const [alias, setAlias] = useState("")
   const [convertedUrl, setConvertedUrl] = useState<string | null>(null)
