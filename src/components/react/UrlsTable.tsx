@@ -36,7 +36,7 @@ const UrlsTable: React.FC<UrlsTableProps> = ({ data }) => {
   }
 
   return (
-    <Table>
+    <Table className="mb-4">
       <TableCaption>URLs</TableCaption>
       <TableHeader>
         <TableRow>
