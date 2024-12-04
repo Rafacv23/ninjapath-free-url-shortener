@@ -3,8 +3,12 @@ import Layout from '@/layouts/Layout.astro';
 import SendUrlForm from '@/components/react/SendUrlForm';
 import { SITE_EN_TITLE, SITE_EN_DESCRIPTION, SITE_URL } from '@/utils/constants';
 
-const user = await Astro.locals.currentUser()
-const email = user.emailAddresses.map((email: { emailAddress: string; }) => email.emailAddress)[0]
+let email
+
+if(Astro.locals.auth().userId){
+	const user = await Astro.locals.currentUser()
+	email = user.emailAddresses.map((email: { emailAddress: string; }) => email.emailAddress)[0]
+}
 ---
 
 <Layout title={SITE_EN_TITLE} description={SITE_EN_DESCRIPTION} canonical={SITE_URL}>
