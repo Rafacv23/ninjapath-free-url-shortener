@@ -1,5 +1,4 @@
 import React from "react"
-import useUrlStore from "@/lib/useUrlStore"
 import type { Url } from "@/utils/definitions"
 import {
   Table,
@@ -14,10 +13,12 @@ import { Button } from "@/components/ui/button"
 import { format } from "date-fns"
 import { Trash2 } from "lucide-react"
 
-const UrlsTable: React.FC = () => {
-  const urls = useUrlStore((state: any) => state.urls)
+interface UrlsTableProps {
+  data: Url[] // Expecting an array of Url objects as props
+}
 
-  if (urls.length === 0) {
+const UrlsTable: React.FC<UrlsTableProps> = ({ data }) => {
+  if (!data || data.length === 0) {
     return (
       <div>
         <h2>No URLs created yet.</h2>
@@ -38,12 +39,12 @@ const UrlsTable: React.FC = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {urls.map((url: Url) => (
-          <TableRow key={url.originalUrl}>
-            <TableCell>{url.originalUrl}</TableCell>
-            <TableCell>{url.convertedUrl}</TableCell>
+        {data.map((url: Url) => (
+          <TableRow key={url.id}>
+            <TableCell>{url.large_url}</TableCell>
+            <TableCell>{url.short_url}</TableCell>
             <TableCell>
-              {format(new Date(url.date), "MM/dd/yyyy 'at' HH:mm")}
+              {format(new Date(url.created_at), "MM/dd/yyyy 'at' HH:mm")}
             </TableCell>
             <TableCell>{url.clicks || "0"}</TableCell>
             <TableCell className="text-right">

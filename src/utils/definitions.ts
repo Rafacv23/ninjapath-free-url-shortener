@@ -3,10 +3,12 @@ export type convertedUrl = {
 }
 
 export interface Url {
-  originalUrl: string
-  convertedUrl: string
-  date: string
+  id: string
+  large_url: string
+  short_url: string
+  created_at: string
   clicks: number
+  created_by?: string
 }
 
 export interface UrlsState {
