@@ -12,7 +12,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import checkAlias from "@/services/checkAlias"
 
-export default function SendUrlForm() {
+export default function SendUrlForm({ email }: { email?: string }) {
   const [url, setUrl] = useState("")
   const [alias, setAlias] = useState("")
   const [convertedUrl, setConvertedUrl] = useState<string | null>(null)
@@ -32,8 +32,9 @@ export default function SendUrlForm() {
 
     try {
       setLoading(true)
+
       if (!alias) {
-        const response = await sendUrl(url)
+        const response = await sendUrl(url, undefined, email)
         setConvertedUrl(response)
         toast({
           title: "Success",
@@ -50,7 +51,7 @@ export default function SendUrlForm() {
           // check if the alias is already in use
           const aliasExists = await checkAlias(alias)
           if (aliasExists) {
-            const response = await sendUrl(url, alias)
+            const response = await sendUrl(url, alias, email)
             setConvertedUrl(response)
             toast({
               title: "Success",

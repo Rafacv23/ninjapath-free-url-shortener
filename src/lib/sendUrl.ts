@@ -5,19 +5,15 @@ import { SITE_URL } from "@/utils/constants.ts"
 import useUrlStore from "@/lib/useUrlStore.ts"
 import checkLargeUrl from "@/services/checkLargeUrl"
 
-export async function sendUrl(url: string, alias?: string): Promise<string> {
+export async function sendUrl(
+  url: string,
+  alias?: string,
+  email?: string
+): Promise<string> {
   const date = new Date().toISOString()
   const { addUrl } = useUrlStore.getState()
   try {
     const urlExists = await checkLargeUrl(url)
-    const {
-      data: { user },
-      error,
-    } = await supabase.auth.getUser()
-
-    if (error) {
-      console.error(`Error fetching user data: ${error.message}`)
-    }
 
     if (urlExists) {
       const urls = await getShortUrl(url)
@@ -27,7 +23,7 @@ export async function sendUrl(url: string, alias?: string): Promise<string> {
         originalUrl: url,
         convertedUrl,
         date,
-        created_by: user?.email || null,
+        created_by: email,
       })
       return convertedUrl
     } else {
@@ -41,7 +37,7 @@ export async function sendUrl(url: string, alias?: string): Promise<string> {
         originalUrl: url,
         convertedUrl,
         date,
-        created_by: user?.email || null,
+        created_by: email,
       })
       return convertedUrl
     }
