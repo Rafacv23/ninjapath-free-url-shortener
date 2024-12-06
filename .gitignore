@@ -24,4 +24,13 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+<<<<<<< HEAD
 .vercel
+=======
+<<<<<<< HEAD
+.vercel
+=======
+
+.vercel
+>>>>>>> 861c1650a1a1aa0c75b4506f623af07961668615
+>>>>>>> 8c5d1d380feaf3cf0fdf9d7dfe6e97089ccb117d
