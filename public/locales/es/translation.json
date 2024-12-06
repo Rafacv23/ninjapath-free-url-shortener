@@ -1,0 +1,37 @@
+{
+  "site": {
+    "title": "Ninja Path | Acortador de URLs gratuito",
+    "description": "Ninja Path es un acortador de URLs gratuito. Puedes crear tus propios enlaces en un solo clic."
+  },
+  "header": {
+    "archive": "URLs creadas",
+    "login": "Iniciar sesión",
+    "lang": "Idioma"
+  },
+  "index": {
+    "label-one": "Acortar una URL larga",
+    "placeholder-one": "*Ingresa un enlace largo aquí",
+    "label-two": "Personaliza tu enlace",
+    "placeholder-two": "Ingresa un alias",
+    "loading-btn": "Generando tu enlace...",
+    "btn": "Acortar URL",
+    "toast-error": "Error",
+    "toast-error-description": "URL no válida proporcionada.",
+    "toast-success": "Éxito",
+    "toast-success-description": "URL acortada con éxito.",
+    "toast-error-description-two": "El alias debe tener entre 2 y 20 caracteres.",
+    "toast-error-description-three": "Alias ya en uso. Prueba con otro.",
+    "toast-error-description-four": "Ocurrió un error inesperado. Por favor, intenta nuevamente."
+  },
+  "archive": {
+    "title": "Archivo | Ninja Path",
+    "back-btn": "Regresar",
+    "table-title": "URLs",
+    "no-urls": "Aún no se han creado URLs.",
+    "original-url": "URL original",
+    "converted-url": "URL convertida",
+    "created": "Creado",
+    "clicks": "Clics",
+    "delete": "Eliminar"
+  }
+}

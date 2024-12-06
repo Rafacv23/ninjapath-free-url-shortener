@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import checkAlias from "@/services/checkAlias"
+import { t } from "i18next"
 
 export default function SendUrlForm({ email }: { email?: string | undefined }) {
   const [url, setUrl] = useState("")
@@ -23,8 +24,8 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
 
     !isValidUrl(url)
       ? toast({
-          title: "Error",
-          description: "Invalid URL provided.",
+          title: t("index.toast-error"),
+          description: t("index.toast-error-description"),
           variant: "destructive",
         })
       : null
@@ -36,14 +37,14 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
         const response = await sendUrl(url, undefined, email)
         setConvertedUrl(response)
         toast({
-          title: "Success",
-          description: "URL shortened successfully.",
+          title: t("index.toast-success"),
+          description: t("index.toast-success-description"),
         })
       } else {
         if (alias && (alias.length < 2 || alias.length > 20)) {
           toast({
-            title: "Error",
-            description: "Alias must be between 2 and 20 characters.",
+            title: t("index.toast-error"),
+            description: t("index.toast-error-description-two"),
             variant: "destructive",
           })
         } else {
@@ -53,13 +54,13 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
             const response = await sendUrl(url, alias, email)
             setConvertedUrl(response)
             toast({
-              title: "Success",
-              description: "URL shortened successfully.",
+              title: t("index.toast-success"),
+              description: t("index.toast-success-description"),
             })
           } else {
             toast({
-              title: "Error",
-              description: "Alias already in use. Try with other one.",
+              title: t("index.toast-error"),
+              description: t("index.toast-error-description-three"),
               variant: "destructive",
             })
           }
@@ -68,8 +69,8 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
     } catch (error) {
       console.error("Error sending the URL:", error)
       toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please try again.",
+        title: t("index.toast-error"),
+        description: t("index.toast-error-description-four"),
         variant: "destructive",
       })
     } finally {
@@ -82,11 +83,11 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
       <Card>
         <CardContent>
           <form onSubmit={handleSubmit} className="grid gap-4 pt-4">
-            <Label htmlFor="url">Shorten a long URL</Label>
+            <Label htmlFor="url">{t("index.label-one")}</Label>
             <div className="grid gap-2 grid-cols-[1fr_auto] items-center">
               <Input
                 id="url"
-                placeholder="*Enter a long link here"
+                placeholder={t("index.placeholder-one")}
                 type="url"
                 name="url"
                 value={url}
@@ -104,13 +105,13 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
                 <X className="h-[1.2rem] w-[1.2rem]" />
               </Button>
             </div>
-            <Label htmlFor="alias">Customise your link</Label>
+            <Label htmlFor="alias">{t("index.label-two")}</Label>
             <div className="grid gap-2 grid-cols-[1fr_auto] items-center">
               <Input
                 type="text"
                 min={2}
                 max={20}
-                placeholder="Enter alias"
+                placeholder={t("index.placeholder-two")}
                 id="alias"
                 name="alias"
                 value={alias}
@@ -137,9 +138,9 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
               primaryColor="#63e"
             >
               {loading ? (
-                <span aria-busy="true">Generating your link...</span>
+                <span aria-busy="true">{t("index.loading-btn")}</span>
               ) : (
-                "Shorten URL"
+                t("index.btn")
               )}
             </HoverBorderGradient>
           </form>

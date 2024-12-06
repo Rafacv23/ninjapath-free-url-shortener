@@ -5,7 +5,7 @@ import Layout from "@/layouts/Layout.astro";
 import { supabase } from "@/lib/supabase";
 import { t, changeLanguage } from "i18next";
 
-changeLanguage("en");
+changeLanguage("es");
 
 const data = await Astro.locals.currentUser();
 const email = data?.emailAddresses.map((email: {

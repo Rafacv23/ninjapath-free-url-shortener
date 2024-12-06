@@ -1,0 +1,37 @@
+{
+  "site": {
+    "title": "Ninja Path | Free URL shortener",
+    "description": "Ninja Path it's a free URL shortener. You can make your own URLs in just one click."
+  },
+  "header": {
+    "archive": "Created URLs",
+    "login": "Login",
+    "lang": "Language"
+  },
+  "index": {
+    "label-one": "Shorten a long URL",
+    "placeholder-one": "*Enter a long link here",
+    "label-two": "Customise your link",
+    "placeholder-two": "Enter alias",
+    "loading-btn": "Generating your link...",
+    "btn": "Shorten URL",
+    "toast-error": "Error",
+    "toast-error-description": "Invalid URL provided.",
+    "toast-success": "Success",
+    "toast-success-description": "URL shortened successfully.",
+    "toast-error-description-two": "Alias must be between 2 and 20 characters.",
+    "toast-error-description-three": "Alias already in use. Try with other one.",
+    "toast-error-description-four": "An unexpected error occurred. Please try again."
+  },
+  "archive": {
+    "title": "Archive | Ninja Path",
+    "back-btn": "Go back",
+    "table-title": "URLS",
+    "no-urls": "No URLs created yet.",
+    "original-url": "Original URL",
+    "converted-url": "Converted URL",
+    "created": "Created",
+    "clicks": "Clicks",
+    "delete": "Delete"
+  }
+}

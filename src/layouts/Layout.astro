@@ -3,21 +3,22 @@ import Footer from '@/components/astro/Footer.astro';
 import Header from '@/components/astro/Header.astro';
 import SEO from '@/components/astro/SEO.astro';
 import { Toaster } from '@/components/ui/toaster';
+import i18next, { t } from "i18next";
 
 interface Props {
-	title: string
-	description: string
+	title?: string
+	description?: string
 	canonical?: string
 	image?: string
 }
 
-const { title, description, canonical, image } = Astro.props;
+const { canonical, image } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={i18next.language}>
 	<head>
-		<SEO title={title} description={description} canonical={canonical} image={image}/>
+		<SEO title={t("site.title")} description={t("site.description")} canonical={canonical} image={image} />
 	</head>
 	<body class="dark">
 		<div class="absolute inset-0 -z-10 h-full w-full items-center py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">

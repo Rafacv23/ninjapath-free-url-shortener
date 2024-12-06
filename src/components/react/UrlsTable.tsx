@@ -18,6 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { t } from "i18next"
 
 interface UrlsTableProps {
   data: Url[] // Expecting an array of Url objects as props
@@ -28,8 +29,8 @@ const UrlsTable: React.FC<UrlsTableProps> = ({ data }) => {
     return (
       <Card className="mb-4">
         <CardHeader>
-          <CardTitle>Urls</CardTitle>
-          <CardDescription>No URLs created yet.</CardDescription>
+          <CardTitle>{t("archive.table-title")}</CardTitle>
+          <CardDescription>{t("archive.no-urls")}</CardDescription>
         </CardHeader>
       </Card>
     )
@@ -37,14 +38,16 @@ const UrlsTable: React.FC<UrlsTableProps> = ({ data }) => {
 
   return (
     <Table className="mb-4">
-      <TableCaption>URLs</TableCaption>
+      <TableCaption>{t("archive.table-title")}</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Original URL</TableHead>
-          <TableHead>Converted URL</TableHead>
-          <TableHead className="w-[100px]">Created</TableHead>
-          <TableHead className="w-[100px]">Clicks</TableHead>
-          <TableHead className="text-right">Delete</TableHead>
+          <TableHead className="w-[100px]">
+            {t("archive.original-url")}
+          </TableHead>
+          <TableHead>{t("archive.converted-url")}</TableHead>
+          <TableHead className="w-[100px]">{t("archive.created")}</TableHead>
+          <TableHead className="w-[100px]">{t("archive.clicks")}</TableHead>
+          <TableHead className="text-right">{t("archive.delete")}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

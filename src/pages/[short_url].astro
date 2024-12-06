@@ -2,13 +2,25 @@
 import Redirect from "@/components/react/Redirect";
 import Layout from "@/layouts/Layout.astro";
 import fetchLargeUrl from "@/services/fetchLargeUrl";
-import { SITE_EN_TITLE, SITE_EN_DESCRIPTION } from '@/utils/constants';
+import { SITE_EN_TITLE, SITE_EN_DESCRIPTION } from "@/utils/constants";
+
 const { short_url } = Astro.params;
-const large_url = await fetchLargeUrl(short_url);
+
+const reservedRoutes = ["es", "es/archive"];
+
+if (reservedRoutes.includes(Astro.url.pathname)) {
+    return Astro.redirect(`/${short_url}`);
+}
+
+// Fetch the large URL server-side and handle the redirection
+let large_url = null;
+if (short_url) {
+    large_url = await fetchLargeUrl(short_url);
+}
 ---
 
-<Layout title={SITE_EN_TITLE} description={SITE_EN_DESCRIPTION}>
-  <main>
-      <Redirect url={large_url} client:only="react" />
-  </main>
-</Layout>
+{large_url !== null ? (
+    Astro.redirect(large_url)
+) : (
+    Astro.redirect("/404")
+)}
