@@ -8,4 +8,7 @@ export default {
   i18nextClientPlugins: {
     "{initReactI18next}": "react-i18next",
   },
+  backend: {
+    loadPath: "/locales/{{lng}}/{{ns}}.json",
+  },
 }
