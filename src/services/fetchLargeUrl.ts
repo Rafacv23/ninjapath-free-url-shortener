@@ -1,19 +1,22 @@
 import { supabase } from "@/lib/supabase"
+import { SITE_URL } from "@/utils/constants"
 
 // check if the shortUrl is already in the database (with alias or without)
 export default async function fetchLargeUrl(
   url: string | undefined
-): Promise<string> {
+): Promise<string | null> {
+  if (!url) {
+    return null
+  }
+
   try {
-    const response = await fetch(
-      `http://localhost:4321/api/url/short/${url}.json`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    const response = await fetch(`${SITE_URL}/api/url/short/${url}.json`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
     if (!response.ok) {
       const errorData = await response.json()
       throw new Error(
@@ -23,7 +26,7 @@ export default async function fetchLargeUrl(
 
     const data = await response.json()
 
-    //add +1 click to the url in the database
+    // Add +1 click to the url in the database
     const { error: updateError } = await supabase
       .from("urls")
       .update({
@@ -35,9 +38,9 @@ export default async function fetchLargeUrl(
       console.error("Error updating clicks:", updateError.message)
     }
 
-    return data.data.large_url
+    return data.data.large_url || null
   } catch (error) {
     console.error("Error checking shortUrl:", error)
-    throw error
+    return null
   }
 }
