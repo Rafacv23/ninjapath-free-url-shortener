@@ -16,10 +16,7 @@ export default async function fetchLargeUrl(
         "Content-Type": "application/json",
       },
     })
-<<<<<<< HEAD
-=======
 
->>>>>>> development
     if (!response.ok) {
       const errorData = await response.json()
       throw new Error(
