@@ -49,7 +49,8 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
         } else {
           // check if the alias is already in use
           const aliasExists = await checkAlias(alias)
-          if (aliasExists) {
+
+          if (!aliasExists) {
             const response = await sendUrl(url, alias, email)
             setConvertedUrl(response)
             toast({

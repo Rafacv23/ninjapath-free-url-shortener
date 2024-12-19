@@ -1,7 +1,9 @@
+import { SITE_URL } from "@/utils/constants"
+
 // check if the shortUrl is already in the database (with alias or without)
 export default async function checkAlias(alias: string): Promise<boolean> {
   try {
-    const response = await fetch(`/api/url/short/${alias}`, {
+    const response = await fetch(`${SITE_URL}/api/url/short/${alias}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -9,7 +11,7 @@ export default async function checkAlias(alias: string): Promise<boolean> {
     })
 
     // if response is ok, alias exists
-    if (response.ok) {
+    if (response.status === 200) {
       return true
     }
     //if response fails the alias doesnt exists
