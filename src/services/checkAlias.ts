@@ -1,29 +1,30 @@
 import { SITE_URL } from "@/utils/constants"
 
-// check if the shortUrl is already in the database (with alias or without)
+// Check if the alias is already in use
 export default async function checkAlias(alias: string): Promise<boolean> {
   try {
-    const response = await fetch(`${SITE_URL}/api/url/short/${alias}`, {
+    const response = await fetch(`/api/url/short/${alias}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     })
 
-    // if response is ok, alias exists
+    console.log(response.status)
+
     if (response.status === 200) {
-      return true
-    }
-    //if response fails the alias doesnt exists
-    if (response.status === 404 || response.status === 406) {
-      return false
+      return true // Alias exists
+    } else if (response.status === 404) {
+      return false // Alias does not exist
     }
 
-    // Other http errors
+    // Handle unexpected statuses
     const errorData = await response.json()
-    throw new Error(errorData.error || `Error fetching URL: ${response.status}`)
+    throw new Error(
+      errorData.error || `Unexpected response: ${response.status}`
+    )
   } catch (error) {
-    console.error("Error checking shortUrl:", error)
-    throw error
+    console.error("Error checking alias:", error)
+    throw new Error("Failed to check alias. Please try again later.")
   }
 }

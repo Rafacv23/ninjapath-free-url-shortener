@@ -12,60 +12,58 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import checkAlias from "@/services/checkAlias"
 
-export default function SendUrlForm({ email }: { email?: string | undefined }) {
+export default function SendUrlForm({ email }: { email?: string }) {
   const [url, setUrl] = useState("")
   const [alias, setAlias] = useState("")
   const [convertedUrl, setConvertedUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const { toast } = useToast()
-  const handleSubmit = async (event: { preventDefault: () => void }) => {
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
-    !isValidUrl(url)
-      ? toast({
-          title: "Error",
-          description: "Invalid URL provided.",
-          variant: "destructive",
-        })
-      : null
+    if (!isValidUrl(url)) {
+      toast({
+        title: "Error",
+        description: "Invalid URL provided.",
+        variant: "destructive",
+      })
+      return
+    }
 
     try {
       setLoading(true)
 
-      if (!alias) {
-        const response = await sendUrl(url, undefined, email)
-        setConvertedUrl(response)
-        toast({
-          title: "Success",
-          description: "URL shortened successfully.",
-        })
-      } else {
-        if (alias && (alias.length < 2 || alias.length > 20)) {
+      if (alias) {
+        if (alias.length < 2 || alias.length > 20) {
           toast({
             title: "Error",
             description: "Alias must be between 2 and 20 characters.",
             variant: "destructive",
           })
-        } else {
-          // check if the alias is already in use
-          const aliasExists = await checkAlias(alias)
+          return
+        }
 
-          if (!aliasExists) {
-            const response = await sendUrl(url, alias, email)
-            setConvertedUrl(response)
-            toast({
-              title: "Success",
-              description: "URL shortened successfully.",
-            })
-          } else {
-            toast({
-              title: "Error",
-              description: "Alias already in use. Try with other one.",
-              variant: "destructive",
-            })
-          }
+        const aliasExists = await checkAlias(alias)
+
+        console.log(aliasExists)
+
+        if (aliasExists) {
+          toast({
+            title: "Error",
+            description: "Alias already in use. Try another one.",
+            variant: "destructive",
+          })
+          return
         }
       }
+
+      const response = await sendUrl(url, alias || undefined, email)
+      setConvertedUrl(response)
+      toast({
+        title: "Success",
+        description: "URL shortened successfully.",
+      })
     } catch (error) {
       console.error("Error sending the URL:", error)
       toast({
@@ -95,40 +93,41 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
                 required
                 disabled={loading}
               />
-              <Button
-                variant={"destructive"}
-                onClick={() => setUrl("")}
-                className={`w-auto ${url ? "" : "hidden"}`}
-                disabled={loading}
-                type="button"
-              >
-                <X className="h-[1.2rem] w-[1.2rem]" />
-              </Button>
+              {url && (
+                <Button
+                  variant={"destructive"}
+                  onClick={() => setUrl("")}
+                  className="w-auto"
+                  disabled={loading}
+                  type="button"
+                >
+                  <X className="h-[1.2rem] w-[1.2rem]" />
+                </Button>
+              )}
             </div>
             <Label htmlFor="alias">Customise your link</Label>
             <div className="grid gap-2 grid-cols-[1fr_auto] items-center">
               <Input
                 type="text"
-                min={2}
-                max={20}
                 placeholder="Enter alias"
                 id="alias"
                 name="alias"
                 value={alias}
-                disabled={loading || !url}
                 onChange={(event) => handleChangeAlias(event, setAlias)}
+                disabled={loading || !url}
               />
-              <Button
-                variant={"destructive"}
-                onClick={() => setAlias("")}
-                className={`w-auto ${alias ? "" : "hidden"}`}
-                disabled={loading}
-                type="button"
-              >
-                <X className="h-[1.2rem] w-[1.2rem]" />
-              </Button>
+              {alias && (
+                <Button
+                  variant={"destructive"}
+                  onClick={() => setAlias("")}
+                  className="w-auto"
+                  disabled={loading}
+                  type="button"
+                >
+                  <X className="h-[1.2rem] w-[1.2rem]" />
+                </Button>
+              )}
             </div>
-
             <HoverBorderGradient
               containerClassName="rounded-md w-full"
               as={"button"}
@@ -137,19 +136,17 @@ export default function SendUrlForm({ email }: { email?: string | undefined }) {
               disabled={loading}
               primaryColor="#63e"
             >
-              {loading ? (
-                <span aria-busy="true">Generating your link...</span>
-              ) : (
-                "Shorten URL"
-              )}
+              {loading ? "Generating your link..." : "Shorten URL"}
             </HoverBorderGradient>
           </form>
         </CardContent>
       </Card>
 
-      <div className="mt-4">
-        {convertedUrl && <ConvertedUrl convertedUrl={convertedUrl} />}
-      </div>
+      {convertedUrl && (
+        <div className="mt-4">
+          <ConvertedUrl convertedUrl={convertedUrl} />
+        </div>
+      )}
     </div>
   )
 }
