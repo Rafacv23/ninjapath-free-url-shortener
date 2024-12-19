@@ -46,8 +46,6 @@ export default function SendUrlForm({ email }: { email?: string }) {
 
         const aliasExists = await checkAlias(alias)
 
-        console.log(aliasExists)
-
         if (aliasExists) {
           toast({
             title: "Error",
