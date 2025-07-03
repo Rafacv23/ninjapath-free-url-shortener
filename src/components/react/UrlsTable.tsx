@@ -1,5 +1,5 @@
 import React from "react"
-import type { Url } from "@/utils/definitions"
+import type { Url } from "@/types/definitions"
 import {
   Table,
   TableBody,

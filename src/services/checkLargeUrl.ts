@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase"
+import { supabase } from "@/utils/db/supabase"
 
 //check if the largeUrl is already in the database
 export default async function checkLargeUrl(

@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase"
+import { supabase } from "@/utils/db/supabase"
 import { getShortUrl } from "@/lib/getShortUrl.ts"
 import { generateShortUrl } from "@/actions/generateShortUrl.ts"
 import { SITE_URL } from "@/utils/constants.ts"

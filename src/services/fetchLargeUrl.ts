@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase"
+import { supabase } from "@/utils/db/supabase"
 import { SITE_URL } from "@/utils/constants"
 
 // check if the shortUrl is already in the database (with alias or without)
