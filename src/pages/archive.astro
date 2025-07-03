@@ -2,7 +2,7 @@
 import UrlsTable from "@/components/react/UrlsTable";
 import { buttonVariants } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/utils/db/supabase";
 import { SITE_EN_TITLE, SITE_EN_DESCRIPTION, SITE_URL } from "@/utils/constants";
 
 const data = await Astro.locals.currentUser()

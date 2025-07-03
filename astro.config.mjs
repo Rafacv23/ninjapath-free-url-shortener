@@ -4,14 +4,13 @@ import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
 import { SITE_URL } from "./src/utils/constants"
 import tailwind from "@astrojs/tailwind"
-import clerk from "@clerk/astro"
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
   output: "server",
   adapter: vercel(),
-  integrations: [react(), sitemap(), tailwind(), clerk()],
+  integrations: [react(), sitemap(), tailwind()],
   i18n: {
     defaultLocale: "en",
     locales: ["es", "en"],

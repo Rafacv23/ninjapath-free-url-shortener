@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { sendUrl } from "@/lib/sendUrl"
 import ConvertedUrl from "@/components/react/ConvertedUrl"
-import { isValidUrl } from "@/utils/isValidUrl"
+import { isValidUrl } from "@/utils/utils"
 import { handleChange, handleChangeAlias } from "@/actions/handleFunctions"
 import { X } from "lucide-react"
 import { Input } from "@/components/ui/input"
@@ -12,7 +12,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import checkAlias from "@/services/checkAlias"
 
-export default function SendUrlForm({ email }: { email?: string }) {
+export default function SendUrlForm() {
   const [url, setUrl] = useState("")
   const [alias, setAlias] = useState("")
   const [convertedUrl, setConvertedUrl] = useState<string | null>(null)
@@ -56,7 +56,7 @@ export default function SendUrlForm({ email }: { email?: string }) {
         }
       }
 
-      const response = await sendUrl(url, alias || undefined, email)
+      const response = await sendUrl(url, alias || undefined)
       setConvertedUrl(response)
       toast({
         title: "Success",
