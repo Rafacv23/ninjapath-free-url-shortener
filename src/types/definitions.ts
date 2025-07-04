@@ -11,6 +11,13 @@ export interface Url {
   created_by?: string
 }
 
+export type FetchedUrl = {
+  large_url: string
+  short_url: string
+  clicks: number
+  created_at: string
+}
+
 export interface UrlsState {
   urls: Url[]
   addUrl: (url: Url) => void

@@ -1,8 +1,7 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { buttonVariants } from "@/components/ui/button";
-import { Globe, History, User } from "lucide-astro";
+import Layout from "@/layouts/Layout.astro";
 import { supabase } from "@/utils/db/supabase";
+import { getUserUrls } from "@/utils/queries";
 
 
 const accessToken = Astro.cookies.get("sb-access-token");
@@ -37,17 +36,36 @@ try {
   return Astro.redirect("/login");
 }
 
+const userEmail = session.data.user?.email;
 
-const email = session.data.user?.email;
+if (!userEmail) {
+  return Astro.redirect("/login");
+}
+const urls = await getUserUrls(userEmail);
 
+console.log(urls)
 ---
 
-<header class="backdrop-blur-lg backdrop-opacity-60 bg-card flex flex-row justify-between space-x-4 items-center p-4 sticky top-0 z-40 w-full rounded-xl md:mt-4">
-    <a href="/" title="Home" class="items-center flex flex-row gap-2">
-            <img src="./favicon.avif" alt="Ninja path logo" width="30" />
-            <h1 class="font-bold text-base sm:text-xl">Ninja Path</h1>
-        </a>
-        <a href="/dashboard">
-            {email}
-        </a>
-</header>
+<Layout title="Dashboard">
+    <h1>Dashboard</h1>
+    <table class="bg-card p-4 rounded-lg shadow-md ">
+      <thead>
+        <tr>
+          <th>Large URL</th>
+          <th>Short URL</th>
+          <th>Clicks</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {urls.map((url) => (
+          <tr>
+            <td>{url.large_url}</td>
+            <td>{url.short_url}</td>
+            <td>{url.clicks}</td>
+            <td>{url.created_at}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+</Layout>

@@ -12,7 +12,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import checkAlias from "@/services/checkAlias"
 
-export default function SendUrlForm() {
+export default function SendUrlForm({ email }: { email?: string }) {
   const [url, setUrl] = useState("")
   const [alias, setAlias] = useState("")
   const [convertedUrl, setConvertedUrl] = useState<string | null>(null)
@@ -56,7 +56,7 @@ export default function SendUrlForm() {
         }
       }
 
-      const response = await sendUrl(url, alias || undefined)
+      const response = await sendUrl(url, alias, email)
       setConvertedUrl(response)
       toast({
         title: "Success",
